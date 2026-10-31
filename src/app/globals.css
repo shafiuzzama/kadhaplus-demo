@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces", Georgia, serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-cream-50 text-ink antialiased;
+    font-feature-settings: "ss01", "cv01";
+  }
+  ::selection {
+    @apply bg-leaf-200 text-herbal-900;
+  }
+}
+
+@layer components {
+  .container-px {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-leaf-400 focus-visible:ring-offset-2;
+  }
+  .btn-primary {
+    @apply btn bg-herbal-600 text-white shadow-soft hover:bg-herbal-700 hover:shadow-glow;
+  }
+  .btn-leaf {
+    @apply btn bg-leaf-500 text-white shadow-soft hover:bg-leaf-600;
+  }
+  .btn-outline {
+    @apply btn border border-herbal-200 bg-white/70 text-herbal-700 hover:border-herbal-400 hover:bg-white;
+  }
+  .btn-ghost {
+    @apply btn text-herbal-700 hover:bg-herbal-50;
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border border-leaf-200 bg-leaf-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-herbal-700;
+  }
+  .card {
+    @apply rounded-3xl border border-herbal-100 bg-white shadow-card;
+  }
+  .section {
+    @apply py-16 sm:py-24;
+  }
+  .h-display {
+    @apply font-display font-semibold tracking-tight text-herbal-900;
+  }
+  .prose-herbal p {
+    @apply mb-4 leading-relaxed text-ink-soft;
+  }
+  .prose-herbal h2 {
+    @apply mb-3 mt-10 font-display text-2xl font-semibold text-herbal-900;
+  }
+  .prose-herbal h3 {
+    @apply mb-2 mt-6 text-lg font-semibold text-herbal-800;
+  }
+  .prose-herbal ul {
+    @apply mb-4 ml-5 list-disc space-y-2 text-ink-soft;
+  }
+  .prose-herbal a {
+    @apply font-medium text-herbal-600 underline underline-offset-2 hover:text-herbal-800;
+  }
+}
+
+/* Subtle leaf-vein texture used behind feature bands */
+.leaf-texture {
+  background-image: radial-gradient(
+      circle at 20% 20%,
+      rgba(95, 165, 47, 0.06) 0,
+      transparent 45%
+    ),
+    radial-gradient(circle at 80% 0%, rgba(46, 105, 61, 0.06) 0, transparent 40%);
+}
