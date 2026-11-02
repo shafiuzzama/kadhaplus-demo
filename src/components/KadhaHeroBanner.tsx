@@ -24,6 +24,18 @@ const slides: Slide[] = [
     alt: "KadhaPlus — Traditional Kadha for Everyday Wellness. A blend of time-tested herbs in a ready-to-make sachet.",
     href: "/product",
   },
+  {
+    id: "immunity",
+    image: "/images/hero-2.webp",
+    alt: "KadhaPlus — Your Daily Immunity Kadha. A herbal blend to help you stay protected, comfortable and active every day.",
+    href: "/product",
+  },
+  {
+    id: "premium",
+    image: "/images/hero-3.webp",
+    alt: "KadhaPlus — Herbs in One Premium Kadha. A traditional herbal blend crafted for your everyday wellness.",
+    href: "/product",
+  },
 ];
 
 /* ================= ICONS ================= */
