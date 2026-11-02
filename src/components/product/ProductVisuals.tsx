@@ -23,43 +23,48 @@ function Rule({ w = "40cqw" }: { w?: string }) {
 export function BoxFront({ priority = false }: { priority?: boolean }) {
   return (
     <div
-      className="relative flex h-full w-full flex-col items-center overflow-hidden rounded-[2cqw] bg-cream-50 px-[10cqw] pb-[7cqw] pt-[9cqw] text-center"
+      className="relative h-full w-full overflow-hidden rounded-[2cqw] bg-cream-50"
       style={{ containerType: "inline-size" }}
     >
-      <div className="absolute inset-x-0 top-0 h-[2.4cqw] bg-clay-500" />
-      <div className="absolute inset-x-0 bottom-0 h-[6cqw] bg-herbal-900" />
-      <div className="pointer-events-none absolute inset-[4cqw] rounded-[1.5cqw] border border-brass-400/70" />
-      <div className="pointer-events-none absolute inset-[5.4cqw] rounded-[1.2cqw] border border-herbal-900/10" />
+      <div className="absolute inset-x-0 top-0 z-20 h-[2.2cqw] bg-clay-500" />
+      <div className="pointer-events-none absolute left-[4cqw] right-[4cqw] top-[4.5cqw] bottom-[42%] rounded-[1.5cqw] border border-brass-400/70" />
 
-      <Image
-        src="/images/logo.jpg"
-        alt={`${site.name} logo`}
-        width={300}
-        height={100}
-        priority={priority}
-        className="relative h-[9cqw] w-auto object-contain"
-      />
-      <div className="relative mt-[3.5cqw]">
-        <Rule w="34cqw" />
-      </div>
-      <p className="relative mt-[3.5cqw] text-[3cqw] font-semibold uppercase tracking-[0.3em] text-herbal-700">
-        Instant Herbal Kadha Granules
-      </p>
-
-      <Emblem className="relative mt-[5cqw] w-[36cqw]" />
-
-      <p className="relative mt-[5cqw] font-serif text-[15cqw] font-semibold leading-[0.85] tracking-tight text-herbal-900">
-        Classic
-      </p>
-      <p className="relative mt-[1.5cqw] font-serif text-[6.5cqw] font-medium uppercase tracking-[0.4em] text-clay-500">
-        Kadha
-      </p>
-
-      <div className="relative mt-auto flex flex-col items-center">
-        <Rule w="30cqw" />
-        <p className="mt-[3cqw] text-[3cqw] font-semibold uppercase tracking-[0.3em] text-brass-600">
-          Pack of 5 Sachets
+      {/* Cream upper */}
+      <div className="absolute inset-x-0 top-0 bottom-[40%] flex flex-col items-center justify-center px-[10cqw] text-center">
+        <Image
+          src="/images/logo.jpg"
+          alt={`${site.name} logo`}
+          width={300}
+          height={100}
+          priority={priority}
+          className="h-[9cqw] w-auto object-contain"
+        />
+        <div className="mt-[3cqw]">
+          <Rule w="30cqw" />
+        </div>
+        <p className="mt-[3cqw] text-[2.9cqw] font-semibold uppercase tracking-[0.3em] text-herbal-700">
+          Instant Herbal Kadha Granules
         </p>
+        <Emblem className="mt-[3.5cqw] w-[32cqw]" />
+      </div>
+
+      {/* Deep-green arch foot */}
+      <div className="absolute inset-x-0 bottom-0 h-[40%] overflow-hidden rounded-t-[22cqw] bg-gradient-to-b from-herbal-800 to-herbal-950">
+        <Sprig className="pointer-events-none absolute left-1/2 top-[38%] h-[40cqw] w-[40cqw] -translate-x-1/2 text-brass-400/[0.12]" />
+        <div className="relative flex h-full flex-col items-center justify-center px-[8cqw] text-center">
+          <p className="font-serif text-[16cqw] font-semibold leading-[0.82] text-cream-50">
+            Classic
+          </p>
+          <p className="mt-[1cqw] font-serif text-[6cqw] font-medium uppercase tracking-[0.42em] text-brass-300">
+            Kadha
+          </p>
+          <div className="mt-[3cqw]">
+            <Rule w="20cqw" />
+          </div>
+          <p className="mt-[2.5cqw] text-[2.9cqw] font-semibold uppercase tracking-[0.3em] text-cream-100/80">
+            Pack of 5 Sachets
+          </p>
+        </div>
       </div>
     </div>
   );

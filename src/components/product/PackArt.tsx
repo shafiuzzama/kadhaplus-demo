@@ -85,16 +85,13 @@ export function SachetArt({
         className="relative h-full w-full overflow-hidden rounded-[2.5cqw] bg-cream-50 shadow-[0_16px_38px_-14px_rgba(22,58,34,0.45)] ring-1 ring-black/5"
         style={{ containerType: "inline-size" }}
       >
-        {/* top & bottom accents */}
-        <div className="absolute inset-x-0 top-0 h-[2.6cqw] bg-clay-500" />
-        {/* inner double frame */}
-        <div className="pointer-events-none absolute inset-[4.5cqw] rounded-[2cqw] border border-brass-400/70" />
-        <div className="pointer-events-none absolute inset-[6cqw] rounded-[1.5cqw] border border-herbal-900/10" />
-        {/* faint botanical watermark */}
-        <Sprig className="pointer-events-none absolute left-1/2 top-[63%] h-[52cqw] w-[52cqw] -translate-x-1/2 text-herbal-900/[0.05]" />
+        {/* top clay accent */}
+        <div className="absolute inset-x-0 top-0 z-20 h-[2.4cqw] bg-clay-500" />
+        {/* frame around the cream upper */}
+        <div className="pointer-events-none absolute left-[4.5cqw] right-[4.5cqw] top-[5cqw] bottom-[43%] rounded-[2cqw] border border-brass-400/70" />
 
-        <div className="relative flex h-full flex-col items-center px-[11cqw] pb-[9cqw] pt-[10cqw] text-center">
-          {/* logo */}
+        {/* ── Cream upper: logo + emblem ── */}
+        <div className="absolute inset-x-0 top-0 bottom-[42%] flex flex-col items-center justify-center px-[10cqw] text-center">
           <Image
             src="/images/logo.jpg"
             alt={`${site.name} logo`}
@@ -103,33 +100,35 @@ export function SachetArt({
             priority={priority}
             className="h-[8cqw] w-auto object-contain"
           />
-
-          <div className="mt-[4cqw] flex w-full justify-center">
-            <Rule w="34cqw" />
+          <div className="mt-[3cqw]">
+            <Rule w="28cqw" />
           </div>
-
-          <p className="mt-[4cqw] text-[3.3cqw] font-semibold uppercase leading-[1.4] tracking-[0.3em] text-herbal-700">
+          <p className="mt-[3cqw] text-[3cqw] font-semibold uppercase leading-[1.4] tracking-[0.28em] text-herbal-700">
             Instant Herbal
             <br />
             Kadha Granules
           </p>
+          <Emblem className="mt-[4cqw] w-[40cqw]" />
+        </div>
 
-          <Emblem className="mt-[5cqw] w-[38cqw]" />
-
-          <p className="mt-[5cqw] font-serif text-[13cqw] font-semibold leading-[0.9] tracking-tight text-herbal-900">
-            Classic
-          </p>
-          <p className="mt-[1cqw] font-serif text-[6.2cqw] font-medium uppercase tracking-[0.35em] text-clay-500">
-            Kadha
-          </p>
-
-          <div className="mt-auto flex w-full flex-col items-center">
-            <Rule w="30cqw" />
-            <p className="mt-[3cqw] text-[3cqw] italic tracking-wide text-ink-muted">
+        {/* ── Deep-green arch foot: product name ── */}
+        <div className="absolute inset-x-0 bottom-0 h-[42%] overflow-hidden rounded-t-[16cqw] bg-gradient-to-b from-herbal-800 to-herbal-950">
+          <Sprig className="pointer-events-none absolute left-1/2 top-[34%] h-[46cqw] w-[46cqw] -translate-x-1/2 text-brass-400/[0.12]" />
+          <div className="relative flex h-full flex-col items-center justify-center px-[8cqw] text-center">
+            <p className="font-serif text-[16cqw] font-semibold leading-[0.85] text-cream-50">
+              Classic
+            </p>
+            <p className="mt-[1cqw] font-serif text-[5.5cqw] font-medium uppercase tracking-[0.4em] text-brass-300">
+              Kadha
+            </p>
+            <div className="mt-[3.5cqw]">
+              <Rule w="22cqw" />
+            </div>
+            <p className="mt-[3cqw] text-[2.9cqw] italic tracking-wide text-cream-100/80">
               {site.product.packagingTagline}
             </p>
             {detail && (
-              <p className="mt-[2cqw] text-[2.6cqw] tracking-wide text-ink-muted/80">
+              <p className="mt-[1.5cqw] text-[2.4cqw] tracking-wide text-cream-100/45">
                 Net Wt. [__] g&nbsp;·&nbsp;Lic/FSSAI [__]
               </p>
             )}
