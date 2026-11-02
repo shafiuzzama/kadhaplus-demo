@@ -24,18 +24,6 @@ const slides: Slide[] = [
     alt: "KadhaPlus — Traditional Kadha for Everyday Wellness. A blend of time-tested herbs in a ready-to-make sachet.",
     href: "/product",
   },
-  {
-    id: "immunity",
-    image: "/images/hero-2.webp",
-    alt: "KadhaPlus — Your Daily Immunity Kadha. A herbal blend to help you stay protected, comfortable and active every day.",
-    href: "/product",
-  },
-  {
-    id: "premium",
-    image: "/images/hero-3.webp",
-    alt: "KadhaPlus — Herbs in One Premium Kadha. A traditional herbal blend crafted for your everyday wellness.",
-    href: "/product",
-  },
 ];
 
 /* ================= ICONS ================= */
@@ -53,14 +41,15 @@ export default function KadhaHeroBanner() {
   const [paused, setPaused] = useState(false);
   const [reduce, setReduce] = useState(false);
   const touchX = useRef<number | null>(null);
+  const multi = slides.length > 1;
   const go = useCallback((n: number) => setI((n + slides.length) % slides.length), []);
 
   useEffect(() => setReduce(window.matchMedia("(prefers-reduced-motion: reduce)").matches), []);
   useEffect(() => {
-    if (paused || reduce) return;
+    if (!multi || paused || reduce) return;
     const t = setTimeout(() => go(i + 1), AUTOPLAY_MS);
     return () => clearTimeout(t);
-  }, [i, paused, reduce, go]);
+  }, [i, multi, paused, reduce, go]);
 
   return (
     <section
@@ -112,7 +101,7 @@ export default function KadhaHeroBanner() {
       </div>
 
       {/* arrows */}
-      {(["l", "r"] as const).map((d) => (
+      {multi && (["l", "r"] as const).map((d) => (
         <button
           key={d}
           type="button"
@@ -125,6 +114,7 @@ export default function KadhaHeroBanner() {
       ))}
 
       {/* dots */}
+      {multi && (
       <div role="tablist" aria-label="Choose slide" className="absolute bottom-3 left-1/2 z-40 flex -translate-x-1/2 gap-2 sm:bottom-5">
         {slides.map((s, n) => (
           <button
@@ -137,6 +127,7 @@ export default function KadhaHeroBanner() {
           />
         ))}
       </div>
+      )}
     </section>
   );
 }
