@@ -17,26 +17,21 @@ export function BoxFront({ priority = false }: { priority?: boolean }) {
       className="relative flex h-full w-full flex-col overflow-hidden rounded-[2.5cqw] bg-cream-100"
       style={{ containerType: "inline-size" }}
     >
-      {/* brand header */}
-      <div className="flex items-center gap-[3cqw] px-[7cqw] pt-[6cqw]">
-        <span className="inline-flex rounded-[2.2cqw] bg-white p-[1.6cqw] shadow-sm ring-1 ring-black/5">
+      {/* brand header — official logo lockup */}
+      <div className="flex flex-col items-center px-[7cqw] pt-[6cqw]">
+        <span className="inline-flex rounded-[2.2cqw] bg-white px-[4cqw] py-[2.5cqw] shadow-sm ring-1 ring-black/5">
           <Image
             src="/images/logo.jpg"
             alt={`${site.name} logo`}
-            width={140}
-            height={140}
+            width={300}
+            height={100}
             priority={priority}
-            className="h-[12cqw] w-[12cqw] object-contain"
+            className="h-[10cqw] w-auto object-contain"
           />
         </span>
-        <div className="leading-none">
-          <p className="font-display text-[11cqw] font-bold tracking-tight text-herbal-800">
-            Kadha<span className="text-spice-600">Plus</span>
-          </p>
-          <p className="mt-[1cqw] text-[3.2cqw] font-semibold uppercase tracking-[0.2em] text-spice-600">
-            Herbal Wellness
-          </p>
-        </div>
+        <p className="mt-[2.5cqw] text-[3.2cqw] font-semibold uppercase tracking-[0.2em] text-spice-600">
+          Herbal Wellness
+        </p>
       </div>
 
       {/* ribbon */}
@@ -90,8 +85,8 @@ export function BoxSidePanel() {
       className="relative flex h-full w-full flex-col items-center justify-between overflow-hidden bg-gradient-to-b from-spice-500 to-spice-700 py-[8cqw]"
       style={{ containerType: "inline-size" }}
     >
-      <span className="inline-flex rounded-[3cqw] bg-white p-[2.5cqw] shadow">
-        <Image src="/images/logo.jpg" alt="" width={120} height={120} className="h-[18cqw] w-[18cqw] object-contain" />
+      <span className="inline-flex rounded-[3cqw] bg-white px-[3cqw] py-[2.5cqw] shadow">
+        <Image src="/images/logo.jpg" alt="" width={300} height={100} className="h-[11cqw] w-auto object-contain" />
       </span>
       <p
         className="font-display text-[12cqw] font-bold uppercase tracking-[0.25em] text-white"
@@ -108,14 +103,11 @@ export function BoxSidePanel() {
 export function BoxTopPanel() {
   return (
     <div
-      className="flex h-full w-full items-center justify-center gap-[3cqw] bg-herbal-800"
+      className="flex h-full w-full items-center justify-center bg-herbal-800"
       style={{ containerType: "inline-size" }}
     >
-      <span className="inline-flex rounded-[2cqw] bg-white p-[1.4cqw]">
-        <Image src="/images/logo.jpg" alt="" width={100} height={100} className="h-[9cqw] w-[9cqw] object-contain" />
-      </span>
-      <span className="font-display text-[9cqw] font-bold text-cream-100">
-        Kadha<span className="text-spice-400">Plus</span>
+      <span className="inline-flex rounded-[2cqw] bg-white px-[3cqw] py-[1.6cqw]">
+        <Image src="/images/logo.jpg" alt="" width={300} height={100} className="h-[9cqw] w-auto object-contain" />
       </span>
     </div>
   );

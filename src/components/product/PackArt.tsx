@@ -166,20 +166,17 @@ export function SachetArt({
         <Crimp color="#ffecd6" />
 
         <div className="flex h-[calc(100%-4.4cqw)] flex-col bg-cream-100">
-          {/* Brand band */}
-          <div className="flex items-center gap-[3cqw] px-[6cqw] pt-[4cqw]">
-            <span className="inline-flex rounded-[2.5cqw] bg-white p-[1.8cqw] shadow-sm ring-1 ring-black/5">
+          {/* Brand band — official logo lockup */}
+          <div className="flex items-center justify-center px-[6cqw] pt-[5cqw]">
+            <span className="inline-flex rounded-[2.5cqw] bg-white px-[4cqw] py-[2.5cqw] shadow-sm ring-1 ring-black/5">
               <Image
                 src="/images/logo.jpg"
                 alt={`${site.name} logo`}
-                width={120}
-                height={120}
+                width={300}
+                height={100}
                 priority={priority}
-                className="h-[11cqw] w-[11cqw] object-contain"
+                className="h-[9cqw] w-auto object-contain"
               />
-            </span>
-            <span className="font-display text-[10cqw] font-bold leading-none tracking-tight text-herbal-800">
-              Kadha<span className="text-spice-600">Plus</span>
             </span>
           </div>
 
