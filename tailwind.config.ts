@@ -15,9 +15,9 @@ const config: Config = {
           200: "#bbd9c0",
           300: "#8fbf98",
           400: "#5e9e6c",
-          500: "#3f8350",
-          600: "#2e693d",
-          700: "#265432",
+          500: "#48915c",
+          600: "#3c6f45",
+          700: "#2e5636",
           800: "#1f432a",
           900: "#163a22",
           950: "#0b2114",
@@ -82,7 +82,8 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
-        display: ["var(--font-display)", "Georgia", "serif"],
+        display: ["var(--font-display)", "Oswald", "sans-serif"],
+        serif: ["var(--font-serif)", "Georgia", "serif"],
       },
       boxShadow: {
         soft: "0 10px 40px -12px rgba(22, 58, 34, 0.18)",

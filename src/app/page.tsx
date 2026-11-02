@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { ArrowRight, Leaf, Sparkles, Quote } from "lucide-react";
+import { ArrowRight, Leaf, Quote } from "lucide-react";
+import ProductCard from "@/components/ProductCard";
 import { site } from "@/lib/site";
 import { features, prepareSteps } from "@/lib/content";
 import Reveal from "@/components/ui/Reveal";
@@ -120,70 +121,44 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ───────────────── Our Product ───────────────── */}
-      <section id="product" className="section bg-herbal-950 text-mint-100">
-        <div className="container-px grid items-center gap-14 lg:grid-cols-2">
-          <Reveal className="relative order-2 flex justify-center lg:order-1">
-            <div className="w-full max-w-sm">
-              <ProductBox />
-            </div>
-          </Reveal>
-          <div className="order-1 lg:order-2">
-            <Reveal>
-              <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-leaf-400/40 bg-leaf-400/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-leaf-300">
-                <Sparkles className="h-3.5 w-3.5" />
-                Meet KadhaPlus
-              </span>
-              <h2 className="font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-                {site.product.shortName}
-              </h2>
-              <p className="mt-3 text-sm font-semibold uppercase tracking-[0.18em] text-spice-400">
-                {site.product.category}
-              </p>
-              <p className="mt-5 max-w-lg leading-relaxed text-mint-100/75">
-                A premium box of {site.product.sachetCount} single-serve sachets —
-                the comfort of classic kadha granules, ready whenever you need a
-                familiar moment of warmth. Available by the sachet or as a value
-                pack of five.
-              </p>
-
-              <dl className="mt-8 grid max-w-md grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/5 text-sm">
-                <div className="bg-herbal-950 p-4">
-                  <dt className="text-mint-100/60">Single sachet</dt>
-                  <dd className="mt-1 font-semibold text-white">
-                    {site.product.sachetPriceLabel}
-                  </dd>
-                </div>
-                <div className="bg-herbal-950 p-4">
-                  <dt className="text-mint-100/60">Pack of 5</dt>
-                  <dd className="mt-1 font-semibold text-white">
-                    {site.product.priceLabel}
-                  </dd>
-                </div>
-                <div className="bg-herbal-950 p-4">
-                  <dt className="text-mint-100/60">Format</dt>
-                  <dd className="mt-1 font-semibold text-white">Instant granules</dd>
-                </div>
-                <div className="bg-herbal-950 p-4">
-                  <dt className="text-mint-100/60">Variant</dt>
-                  <dd className="mt-1 font-semibold text-white">Classic Kadha</dd>
-                </div>
-              </dl>
-
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Link href="/product" className="btn-leaf">
-                  View Product
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-                <Link
-                  href="/ingredients"
-                  className="btn inline-flex border border-white/20 text-white hover:bg-white/10"
-                >
-                  See Ingredients
-                </Link>
+      {/* ───────────────── Our Product (shop) ───────────────── */}
+      <section id="product" className="section bg-cream-50">
+        <div className="container-px">
+          <SectionHeading
+            eyebrow="Meet KadhaPlus"
+            title="Our Classic Kadha Range"
+            subtitle="Instant herbal kadha granules — available by the single sachet or as a value pack of five."
+          />
+          <div className="mx-auto mt-12 grid max-w-3xl gap-6 sm:grid-cols-2">
+            <ProductCard
+              tag="Starter"
+              title="KadhaPlus Classic — Single Sachet"
+              desc="One single-serve sachet of instant herbal kadha granules. Perfect to try."
+              price={site.product.sachetPriceLabel}
+            >
+              <div className="w-20">
+                <SachetArt className="aspect-[1/3.3]" detail={false} />
               </div>
-            </Reveal>
+            </ProductCard>
+            <ProductCard
+              tag="Bestseller"
+              featured
+              title="KadhaPlus Classic — Pack of 5"
+              desc="A premium box of 5 single-serve sachets. The comfort of classic kadha, ready anytime."
+              price={site.product.priceLabel}
+              delay={0.08}
+            >
+              <div className="w-32">
+                <ProductBox />
+              </div>
+            </ProductCard>
           </div>
+          <Reveal className="mt-8 text-center">
+            <Link href="/product" className="btn-outline">
+              Explore the full product
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Reveal>
         </div>
       </section>
 

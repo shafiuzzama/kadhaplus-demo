@@ -48,10 +48,10 @@ export function BoxFront({ priority = false }: { priority?: boolean }) {
 
       <Emblem className="relative mt-[5cqw] w-[36cqw]" />
 
-      <p className="relative mt-[5cqw] font-display text-[15cqw] font-semibold leading-[0.85] tracking-tight text-herbal-900">
+      <p className="relative mt-[5cqw] font-serif text-[15cqw] font-semibold leading-[0.85] tracking-tight text-herbal-900">
         Classic
       </p>
-      <p className="relative mt-[1.5cqw] font-display text-[6.5cqw] font-medium uppercase tracking-[0.4em] text-clay-500">
+      <p className="relative mt-[1.5cqw] font-serif text-[6.5cqw] font-medium uppercase tracking-[0.4em] text-clay-500">
         Kadha
       </p>
 
@@ -76,7 +76,7 @@ export function BoxSidePanel() {
       <div className="absolute inset-x-0 bottom-0 h-[4cqw] bg-herbal-900" />
       <Emblem className="w-[40cqw]" />
       <p
-        className="font-display text-[11cqw] font-medium uppercase tracking-[0.3em] text-herbal-900"
+        className="font-serif text-[11cqw] font-medium uppercase tracking-[0.3em] text-herbal-900"
         style={{ writingMode: "vertical-rl" }}
       >
         Classic&nbsp;Kadha

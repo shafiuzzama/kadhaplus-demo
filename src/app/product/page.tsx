@@ -5,6 +5,7 @@ import PageHeader from "@/components/ui/PageHeader";
 import Reveal from "@/components/ui/Reveal";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Placeholder from "@/components/ui/Placeholder";
+import ProductCard from "@/components/ProductCard";
 import {
   ProductBox3D,
   SachetFan,
@@ -118,38 +119,33 @@ export default function ProductPage() {
             eyebrow="Choose Your Pack"
             title="Two ways to enjoy KadhaPlus"
           />
-          <div className="mx-auto mt-12 grid max-w-4xl gap-6 md:grid-cols-2">
-            <Reveal>
-              <div className="card flex h-full flex-col items-center p-8 text-center">
-                <div className="w-20">
-                  <SachetArt detail={false} className="aspect-[1/3.3]" />
-                </div>
-                <h3 className="mt-6 font-display text-xl font-semibold text-herbal-900">
-                  Individual Sachet
-                </h3>
-                <p className="mt-1 text-sm text-ink-muted">Single-serve · try it first</p>
-                <p className="mt-4 font-display text-3xl font-semibold text-herbal-800">
-                  {site.product.sachetPriceLabel}
-                </p>
+          <div className="mx-auto mt-12 grid max-w-3xl gap-6 sm:grid-cols-2">
+            <ProductCard
+              tag="Starter"
+              title="Individual Sachet"
+              desc="One single-serve sachet of instant herbal kadha granules — try it first."
+              price={site.product.sachetPriceLabel}
+              cta="How to prepare"
+              href="/how-to-prepare"
+            >
+              <div className="w-20">
+                <SachetArt detail={false} className="aspect-[1/3.3]" />
               </div>
-            </Reveal>
-            <Reveal delay={0.08}>
-              <div className="card relative flex h-full flex-col items-center p-8 text-center ring-2 ring-herbal-500">
-                <span className="absolute -top-3 rounded-full bg-herbal-600 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-white">
-                  Best Value
-                </span>
-                <div className="w-28">
-                  <ProductBox3D />
-                </div>
-                <h3 className="mt-8 font-display text-xl font-semibold text-herbal-900">
-                  Classic Kadha Box
-                </h3>
-                <p className="mt-1 text-sm text-ink-muted">Pack of 5 sachets</p>
-                <p className="mt-4 font-display text-3xl font-semibold text-herbal-800">
-                  {site.product.priceLabel}
-                </p>
+            </ProductCard>
+            <ProductCard
+              tag="Best Value"
+              featured
+              title="Classic Kadha Box"
+              desc="A premium box of 5 single-serve sachets — the comfort of classic kadha, anytime."
+              price={site.product.priceLabel}
+              cta="See ingredients"
+              href="/ingredients"
+              delay={0.08}
+            >
+              <div className="w-28">
+                <ProductBox3D />
               </div>
-            </Reveal>
+            </ProductCard>
           </div>
         </div>
       </section>

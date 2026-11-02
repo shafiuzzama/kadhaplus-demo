@@ -1,20 +1,29 @@
 import type { Metadata, Viewport } from "next";
-import { Plus_Jakarta_Sans, Fraunces } from "next/font/google";
+import { Poppins, Bebas_Neue, Fraunces } from "next/font/google";
 import "./globals.css";
+import PromoBar from "@/components/PromoBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { site } from "@/lib/site";
 
-const sans = Plus_Jakarta_Sans({
+const sans = Poppins({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-sans",
+  weight: ["400", "500", "600", "700"],
 });
 
-const display = Fraunces({
+const display = Bebas_Neue({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-display",
+  weight: "400",
+});
+
+const serif = Fraunces({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-serif",
   weight: ["400", "500", "600", "700"],
 });
 
@@ -64,8 +73,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${sans.variable} ${display.variable}`}>
+    <html
+      lang="en"
+      className={`${sans.variable} ${display.variable} ${serif.variable}`}
+    >
       <body className="flex min-h-screen flex-col">
+        <PromoBar />
         <Navbar />
         <main className="flex-1 overflow-x-clip">{children}</main>
         <Footer />

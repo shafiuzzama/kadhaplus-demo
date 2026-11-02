@@ -116,10 +116,10 @@ export function SachetArt({
 
           <Emblem className="mt-[5cqw] w-[38cqw]" />
 
-          <p className="mt-[5cqw] font-display text-[13cqw] font-semibold leading-[0.9] tracking-tight text-herbal-900">
+          <p className="mt-[5cqw] font-serif text-[13cqw] font-semibold leading-[0.9] tracking-tight text-herbal-900">
             Classic
           </p>
-          <p className="mt-[1cqw] font-display text-[6.2cqw] font-medium uppercase tracking-[0.35em] text-clay-500">
+          <p className="mt-[1cqw] font-serif text-[6.2cqw] font-medium uppercase tracking-[0.35em] text-clay-500">
             Kadha
           </p>
 

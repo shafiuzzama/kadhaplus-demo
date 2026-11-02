@@ -42,7 +42,7 @@ export default function Navbar() {
       <nav className="container-px flex h-16 items-center justify-between sm:h-20">
         <Logo priority />
 
-        <ul className="hidden items-center gap-1 lg:flex">
+        <ul className="hidden items-center gap-0.5 xl:flex">
           {nav.map((item) => {
             const active =
               item.href === "/"
@@ -52,7 +52,7 @@ export default function Navbar() {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className={`rounded-full px-3.5 py-2 text-sm font-medium transition-colors ${
+                  className={`whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium transition-colors ${
                     active
                       ? "bg-herbal-50 text-herbal-700"
                       : "text-ink-soft hover:bg-herbal-50 hover:text-herbal-700"
@@ -75,7 +75,7 @@ export default function Navbar() {
             onClick={() => setOpen((v) => !v)}
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-herbal-100 bg-white text-herbal-700 lg:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-herbal-100 bg-white text-herbal-700 xl:hidden"
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -89,7 +89,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="overflow-hidden border-t border-herbal-100 bg-cream-50 lg:hidden"
+            className="overflow-hidden border-t border-herbal-100 bg-cream-50 xl:hidden"
           >
             <ul className="container-px flex flex-col gap-1 py-4">
               {nav.map((item) => {

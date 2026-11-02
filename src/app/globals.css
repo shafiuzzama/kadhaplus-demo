@@ -2,10 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Fraunces", Georgia, serif;
-}
+/* Font CSS variables (--font-sans / --font-display / --font-serif) are provided
+   by next/font via classes on <html>; do not redefine them here or the hashed
+   family names get overridden and the webfonts fail to apply. */
 
 @layer base {
   html {
@@ -25,7 +24,7 @@
     @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10;
   }
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-leaf-400 focus-visible:ring-offset-2;
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-leaf-400 focus-visible:ring-offset-2;
   }
   .btn-primary {
     @apply btn bg-herbal-600 text-white shadow-soft hover:bg-herbal-700 hover:shadow-glow;
@@ -49,7 +48,7 @@
     @apply py-16 sm:py-24;
   }
   .h-display {
-    @apply font-display font-semibold tracking-tight text-herbal-900;
+    @apply font-display font-normal leading-[0.95] tracking-wide text-herbal-900;
   }
   .prose-herbal p {
     @apply mb-4 leading-relaxed text-ink-soft;
