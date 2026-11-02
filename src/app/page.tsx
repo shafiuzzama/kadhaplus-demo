@@ -1,183 +1,159 @@
 import Link from "next/link";
-import { ArrowRight, Leaf, Quote } from "lucide-react";
-import ProductCard from "@/components/ProductCard";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Leaf,
+  Quote,
+  Star,
+} from "lucide-react";
 import { site } from "@/lib/site";
-import { features, prepareSteps } from "@/lib/content";
+import prisma from "@/lib/prisma";
+import { rupees } from "@/lib/money";
+import {
+  features,
+  prepareSteps,
+  traditionalIngredients,
+  whyTrust,
+  faqs,
+} from "@/lib/content";
 import Reveal from "@/components/ui/Reveal";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Accordion from "@/components/ui/Accordion";
-import { faqs } from "@/lib/content";
-import { HeroComposition, ProductBox, SachetFan, SachetArt } from "@/components/product/ProductVisuals";
-import ContactForm from "@/components/ContactForm";
-import { Phone, MapPin, Mail } from "lucide-react";
+import Marquee from "@/components/Marquee";
+import BuyBox, { type BuyVariant } from "@/components/store/BuyBox";
+import {
+  ProductBox3D,
+  SachetStanding,
+  SachetFan,
+} from "@/components/product/ProductVisuals";
+import { Sprig, Emblem } from "@/components/product/PackArt";
 
-export default function HomePage() {
+export const dynamic = "force-dynamic";
+
+export default async function HomePage() {
+  const variantRows = await prisma.variant.findMany({
+    where: { product: { slug: "classic-kadha" } },
+    orderBy: { price: "asc" },
+  });
+  const variants: BuyVariant[] = variantRows.map((v) => ({
+    id: v.id,
+    name: v.name,
+    price: v.price,
+    mrp: v.mrp,
+    stock: v.stock,
+    sachets: v.sachets,
+    isDefault: v.isDefault,
+  }));
+  const fromPrice = variants.length ? Math.min(...variants.map((v) => v.price)) : 2000;
+
   return (
     <>
-      {/* ───────────────── Hero ───────────────── */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-mint-100 via-cream-50 to-cream-50">
+      {/* ═══════════════ HERO ═══════════════ */}
+      <section className="relative overflow-hidden bg-cream-50">
         <div className="absolute inset-0 leaf-texture" />
-        <div className="absolute -left-20 top-10 h-72 w-72 rounded-full bg-leaf-200/40 blur-3xl" />
-        <div className="absolute right-0 top-40 h-96 w-96 rounded-full bg-herbal-100/50 blur-3xl" />
-
-        <div className="container-px relative grid items-center gap-12 py-14 lg:grid-cols-2 lg:py-24">
+        <Sprig className="absolute -left-10 top-24 hidden h-40 w-40 text-herbal-900/[0.04] lg:block" />
+        <div className="container-px relative grid items-center gap-10 py-12 lg:grid-cols-[1.05fr_0.95fr] lg:py-16">
           <Reveal>
-            <span className="eyebrow mb-5">
+            <span className="eyebrow mb-6">
               <Leaf className="h-3.5 w-3.5" />
               {site.tagline}
             </span>
-            <h1 className="h-display text-4xl leading-[1.08] sm:text-5xl lg:text-6xl">
-              A Timeless Indian
+            <h1 className="font-display text-[clamp(3rem,8vw,5.75rem)] leading-[0.92] tracking-wide text-herbal-900">
+              The Kadha Ritual,
               <br />
-              Tradition, <span className="text-spice-600">Made Simple.</span>
+              <span className="text-clay-500">Reimagined</span> for Today.
             </h1>
-            <p className="mt-6 max-w-lg text-base leading-relaxed text-ink-soft sm:text-lg">
-              {site.name} is an instant herbal kadha beverage — the warm, familiar
-              comfort of traditional Indian kadha in convenient single-serve
-              granules. Just add to a cup and enjoy.
+            <p className="mt-6 max-w-lg font-serif text-lg italic text-herbal-700">
+              Dadi maa ka nuskha — now in a single, convenient sachet.
+            </p>
+            <p className="mt-4 max-w-md leading-relaxed text-ink-soft">
+              {site.name} brings the warm, familiar comfort of traditional Indian
+              kadha into an instant herbal beverage. Tear, pour, stir — a moment
+              of warmth, whenever you need it.
             </p>
 
-            {/* quiet pricing line */}
-            <div className="mt-7 flex items-center gap-4 text-sm text-ink-soft">
-              <span>
-                <span className="font-display text-lg font-semibold text-herbal-800">
-                  {site.product.sachetPriceLabel}
-                </span>{" "}
-                / sachet
+            <div className="mt-7 flex items-center gap-5">
+              <span className="text-sm text-ink-soft">
+                From{" "}
+                <span className="font-display text-2xl text-herbal-800">
+                  {rupees(fromPrice)}
+                </span>
               </span>
-              <span className="h-4 w-px bg-herbal-200" />
-              <span>
-                <span className="font-display text-lg font-semibold text-herbal-800">
-                  {site.product.priceLabel}
-                </span>{" "}
-                / pack of 5
+              <span className="h-6 w-px bg-herbal-200" />
+              <span className="text-sm text-ink-muted">
+                Single-serve · Ready in minutes
               </span>
             </div>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link href="/product" className="btn-primary">
-                Explore Product
+                Shop the Ritual
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link href="/about" className="btn-outline">
-                Discover Our Story
+                Our Story
               </Link>
             </div>
           </Reveal>
 
-          <Reveal delay={0.15} className="relative pt-8 lg:pt-0">
-            <HeroComposition />
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ───────────────── Brand Introduction ───────────────── */}
-      <section className="section">
-        <div className="container-px grid items-center gap-12 lg:grid-cols-2">
-          <Reveal className="order-2 lg:order-1">
-            <div className="relative">
-              <div className="absolute -inset-4 -z-10 rounded-[2.5rem] bg-mint-100" />
-              <div className="grid grid-cols-2 items-center gap-6 p-4">
-                <SachetArt className="aspect-[1/3.3] w-full" />
-                <div className="flex flex-col gap-4">
-                  <div className="card flex flex-col justify-center p-6">
-                    <Leaf className="h-8 w-8 text-leaf-500" />
-                    <p className="mt-3 font-display text-lg font-semibold text-herbal-900">
-                      Rooted in nature
-                    </p>
-                    <p className="mt-1 text-sm text-ink-muted">
-                      A familiar herbal ritual.
-                    </p>
-                  </div>
-                  <div className="card flex items-center gap-3 p-5">
-                    <span className="font-display text-2xl font-semibold text-herbal-800">
-                      {site.product.sachetPriceLabel}
-                    </span>
-                    <span className="text-sm text-ink-soft">per single-serve sachet</span>
-                  </div>
+          {/* Arch product panel */}
+          <Reveal delay={0.12} className="relative mx-auto w-full max-w-md">
+            <div className="relative aspect-[4/5] arch-top overflow-hidden bg-gradient-to-b from-herbal-800 via-herbal-900 to-herbal-950 shadow-glow ring-1 ring-brass-400/20">
+              <Sprig className="absolute -right-6 bottom-4 h-44 w-44 text-brass-400/10" />
+              <div className="absolute left-1/2 top-[14%] h-[72%] w-[86%] -translate-x-1/2 arch-top border border-brass-400/25" />
+              <div className="absolute inset-0 flex items-end justify-center pb-10">
+                <div className="w-[62%] animate-float">
+                  <ProductBox3D priority />
                 </div>
               </div>
+              <div className="absolute -left-2 bottom-6 w-[26%]">
+                <SachetStanding priority />
+              </div>
+            </div>
+            {/* rotating seal */}
+            <div className="absolute -left-3 top-6 flex h-24 w-24 items-center justify-center rounded-full bg-cream-50 shadow-soft ring-1 ring-brass-200 sm:h-28 sm:w-28">
+              <Emblem className="w-16 sm:w-20" />
+            </div>
+            <div className="absolute -right-2 top-10 rounded-2xl bg-white px-4 py-3 text-center shadow-soft ring-1 ring-herbal-100">
+              <p className="font-display text-2xl text-herbal-800">
+                {site.product.priceLabel}
+              </p>
+              <p className="text-[10px] uppercase tracking-wider text-ink-muted">
+                Pack of 5
+              </p>
             </div>
           </Reveal>
-
-          <div className="order-1 lg:order-2">
-            <SectionHeading
-              align="left"
-              eyebrow="Our Inspiration"
-              title="Rooted in Tradition. Designed for Today."
-              subtitle="For generations, Indian households have turned to kadha — a warm, herbal preparation made from familiar spices and herbs. KadhaPlus brings that comforting, time-honoured ritual into a convenient single-serve sachet."
-            />
-            <Reveal delay={0.1}>
-              <p className="mt-4 max-w-lg leading-relaxed text-ink-soft">
-                No elaborate preparation, no guesswork — just the familiar warmth
-                of traditional kadha, reimagined for a modern pace of life. It is
-                wellness that feels like home.
-              </p>
-              <p className="mt-6 font-display text-lg italic text-herbal-700">
-                “{site.slogan}”
-              </p>
-            </Reveal>
-          </div>
         </div>
       </section>
 
-      {/* ───────────────── Our Product (shop) ───────────────── */}
-      <section id="product" className="section bg-cream-50">
-        <div className="container-px">
-          <SectionHeading
-            eyebrow="Meet KadhaPlus"
-            title="Our Classic Kadha Range"
-            subtitle="Instant herbal kadha granules — available by the single sachet or as a value pack of five."
-          />
-          <div className="mx-auto mt-12 grid max-w-3xl gap-6 sm:grid-cols-2">
-            <ProductCard
-              tag="Starter"
-              title="KadhaPlus Classic — Single Sachet"
-              desc="One single-serve sachet of instant herbal kadha granules. Perfect to try."
-              price={site.product.sachetPriceLabel}
-            >
-              <div className="w-20">
-                <SachetArt className="aspect-[1/3.3]" detail={false} />
-              </div>
-            </ProductCard>
-            <ProductCard
-              tag="Bestseller"
-              featured
-              title="KadhaPlus Classic — Pack of 5"
-              desc="A premium box of 5 single-serve sachets. The comfort of classic kadha, ready anytime."
-              price={site.product.priceLabel}
-              delay={0.08}
-            >
-              <div className="w-32">
-                <ProductBox />
-              </div>
-            </ProductCard>
-          </div>
-          <Reveal className="mt-8 text-center">
-            <Link href="/product" className="btn-outline">
-              Explore the full product
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </Reveal>
-        </div>
-      </section>
+      {/* ═══════════════ MARQUEE ═══════════════ */}
+      <Marquee
+        items={[
+          "Traditional Wisdom",
+          "Modern Convenience",
+          "Instant Herbal Kadha",
+          "Single-Serve Sachets",
+          "Simple · Convenient · Familiar",
+          "Rooted in Tradition",
+        ]}
+      />
 
-      {/* ───────────────── Why KadhaPlus ───────────────── */}
-      <section className="section">
+      {/* ═══════════════ BENEFITS ═══════════════ */}
+      <section className="section bg-cream-50">
         <div className="container-px">
           <SectionHeading
-            eyebrow="Why KadhaPlus?"
-            title="A familiar ritual, made effortless"
-            subtitle="Everything we love about traditional kadha, thoughtfully adapted for the way we live today."
+            eyebrow="Why KadhaPlus"
+            title="A Familiar Ritual, Made Effortless"
+            subtitle="Everything we love about traditional kadha, thoughtfully adapted for modern life."
           />
           <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {features.map((f, i) => (
-              <Reveal key={f.title} delay={i * 0.08}>
-                <div className="card group h-full p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-soft">
-                  <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-leaf-50 text-leaf-600 transition-colors group-hover:bg-leaf-500 group-hover:text-white">
+              <Reveal key={f.title} delay={i * 0.07}>
+                <div className="group h-full rounded-3xl border border-herbal-100 bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-soft">
+                  <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-leaf-50 text-herbal-600 transition-colors group-hover:bg-herbal-600 group-hover:text-white">
                     <f.icon className="h-7 w-7" />
                   </div>
-                  <h3 className="mt-5 font-display text-lg font-semibold text-herbal-900">
+                  <h3 className="mt-5 font-display text-xl tracking-wide text-herbal-900">
                     {f.title}
                   </h3>
                   <p className="mt-2 text-sm leading-relaxed text-ink-soft">
@@ -190,184 +166,190 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ───────────────── Traditional Inspiration ───────────────── */}
-      <section className="section bg-gradient-to-b from-cream-50 to-mint-100">
+      {/* ═══════════════ PRODUCT SPOTLIGHT ═══════════════ */}
+      <section id="product" className="section bg-gradient-to-b from-mint-100 to-cream-50">
         <div className="container-px grid items-center gap-12 lg:grid-cols-2">
+          <Reveal className="relative flex justify-center">
+            <div className="relative aspect-[4/5] w-full max-w-sm arch-top overflow-hidden bg-cream-100 ring-1 ring-herbal-100">
+              <div className="absolute inset-x-6 top-10 bottom-0 flex items-end justify-center">
+                <div className="w-[78%]">
+                  <ProductBox3D />
+                </div>
+              </div>
+              <Sprig className="absolute left-4 top-6 h-14 w-14 text-herbal-900/10" />
+            </div>
+          </Reveal>
+          <div>
+            <SectionHeading
+              align="left"
+              eyebrow="Meet the Product"
+              title="The Ritual, In a Sachet"
+            />
+            <p className="mt-4 max-w-lg leading-relaxed text-ink-soft">
+              {site.product.shortName} — {site.product.category.toLowerCase()}.
+              Choose a single sachet to try, or the premium box of five for the
+              everyday ritual.
+            </p>
+            <div className="mt-6">
+              <BuyBox variants={variants} />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════ RITUAL / PREPARE ═══════════════ */}
+      <section className="section bg-cream-50">
+        <div className="container-px">
+          <SectionHeading
+            eyebrow="The Ritual"
+            title="Ready in Three Simple Steps"
+            subtitle="Always follow the exact instructions printed on your approved pack."
+          />
+          <div className="mt-14 grid gap-8 md:grid-cols-3">
+            {prepareSteps.map((s, i) => (
+              <Reveal key={s.step} delay={i * 0.1} className="text-center">
+                <div className="relative mx-auto w-40">
+                  <div className="aspect-[3/4] arch-top overflow-hidden bg-gradient-to-b from-mint-100 to-herbal-50">
+                    <div className="flex h-full items-center justify-center">
+                      <s.icon className="h-12 w-12 text-herbal-600" />
+                    </div>
+                  </div>
+                  <span className="absolute -top-3 left-1/2 flex h-10 w-10 -translate-x-1/2 items-center justify-center rounded-full bg-herbal-700 font-display text-lg text-cream-50 ring-4 ring-cream-50">
+                    {i + 1}
+                  </span>
+                </div>
+                <h3 className="mt-5 font-display text-xl tracking-wide text-herbal-900">
+                  {s.title}
+                </h3>
+                <p className="mx-auto mt-2 max-w-xs text-sm leading-relaxed text-ink-soft">
+                  {s.desc}
+                </p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════ INGREDIENTS ═══════════════ */}
+      <section className="section bg-gradient-to-b from-cream-50 to-mint-100">
+        <div className="container-px grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
             <SectionHeading
               align="left"
               eyebrow="Traditional Inspiration"
-              title="The Comfort of Traditional Kadha"
-              subtitle="A warm cup of kadha has long been a part of Indian homes — brewed with herbs and spices like tulsi, ginger, pepper and cloves, and shared as a gesture of care."
+              title="Herbs & Spices Behind Kadha"
+              subtitle="KadhaPlus draws on herbs and spices long associated with traditional Indian kadha. The complete, verified list is printed on the approved pack."
             />
-            <Reveal delay={0.1}>
-              <p className="mt-4 max-w-lg leading-relaxed text-ink-soft">
-                KadhaPlus is inspired by that tradition. It celebrates the warmth
-                and familiarity of kadha as a comforting wellness ritual —
-                without claiming to cure, treat or prevent any condition.
-              </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                {["Tulsi", "Ginger", "Pepper", "Cloves", "Cardamom"].map((t) => (
-                  <span
-                    key={t}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-herbal-100 bg-white px-4 py-2 text-sm font-medium text-herbal-700 shadow-sm"
-                  >
-                    <Leaf className="h-3.5 w-3.5 text-leaf-500" />
-                    {t}
-                  </span>
-                ))}
-              </div>
-            </Reveal>
+            <Link href="/ingredients" className="btn-outline mt-6">
+              Explore ingredients
+              <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
-          <Reveal delay={0.1} className="relative flex justify-center">
-            <div className="relative w-full max-w-md">
-              <div className="absolute inset-0 -z-10 rounded-full bg-leaf-200/50 blur-3xl" />
-              <SachetFan className="pb-10 pt-6" />
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ───────────────── How to Prepare ───────────────── */}
-      <section className="section">
-        <div className="container-px">
-          <SectionHeading
-            eyebrow="How to Prepare"
-            title="Ready in three simple steps"
-            subtitle="Always follow the exact instructions printed on your approved product packaging."
-          />
-          <div className="mt-14 grid gap-6 md:grid-cols-3">
-            {prepareSteps.map((s, i) => (
-              <Reveal key={s.step} delay={i * 0.1}>
-                <div className="card relative h-full overflow-hidden p-8">
-                  <span className="absolute -right-2 -top-4 font-display text-7xl font-bold text-herbal-50">
-                    {s.step}
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+            {traditionalIngredients.slice(0, 6).map((ing, i) => (
+              <Reveal key={ing.name} delay={i * 0.05}>
+                <div className="flex h-full flex-col items-center gap-2 rounded-2xl border border-herbal-100 bg-white p-5 text-center">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-leaf-50">
+                    <Leaf className="h-5 w-5 text-herbal-600" />
                   </span>
-                  <div className="relative">
-                    <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-herbal-600 text-white">
-                      <s.icon className="h-6 w-6" />
-                    </div>
-                    <h3 className="mt-5 font-display text-xl font-semibold text-herbal-900">
-                      {s.title}
-                    </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-ink-soft">
-                      {s.desc}
-                    </p>
-                  </div>
+                  <p className="font-display text-base tracking-wide text-herbal-900">
+                    {ing.name}
+                  </p>
                 </div>
               </Reveal>
             ))}
           </div>
-          <Reveal className="mt-8 text-center">
-            <Link href="/how-to-prepare" className="btn-ghost">
-              See full preparation guide
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </Reveal>
         </div>
       </section>
 
-      {/* ───────────────── Brand Story ───────────────── */}
-      <section className="section bg-herbal-950 text-mint-100">
-        <div className="container-px">
-          <div className="relative mx-auto max-w-4xl text-center">
-            <Quote className="mx-auto h-12 w-12 text-leaf-400/60" />
+      {/* ═══════════════ HERITAGE STORY (color block) ═══════════════ */}
+      <section className="relative overflow-hidden bg-herbal-950 py-20 text-cream-50 sm:py-28">
+        <Sprig className="absolute -left-10 top-6 h-56 w-56 text-brass-400/10" />
+        <Sprig className="absolute -right-10 bottom-0 h-56 w-56 rotate-180 text-brass-400/10" />
+        <div className="container-px relative">
+          <div className="mx-auto max-w-3xl text-center">
+            <Quote className="mx-auto h-10 w-10 text-brass-400" />
             <Reveal>
-              <h2 className="mt-6 font-display text-3xl font-semibold text-white sm:text-4xl">
-                From Generations of Wisdom to Everyday Convenience.
+              <h2 className="mt-6 font-display text-[clamp(2.25rem,5vw,3.75rem)] leading-[1] tracking-wide text-cream-50">
+                From Generations of Wisdom to Everyday Convenience
               </h2>
-              <p className="mx-auto mt-6 max-w-2xl leading-relaxed text-mint-100/75">
-                KadhaPlus began with a simple idea — the kind of wellness our
-                grandmothers trusted shouldn&apos;t be lost to busy modern days.
-                We set out to capture the familiar comfort of home-brewed kadha
-                and offer it in a format that fits today&apos;s pace, without
-                losing the warmth that made it special.
+              <p className="mx-auto mt-6 max-w-2xl leading-relaxed text-cream-100/75">
+                KadhaPlus began with a simple belief — that the comforting
+                wellness our grandmothers trusted shouldn&apos;t be lost to busy
+                modern days. We captured the warmth of home-brewed kadha and
+                offered it in a format that fits the pace of life today.
               </p>
-              <p className="mt-6 font-display text-xl italic text-leaf-300">
+              <p className="mt-8 font-serif text-xl italic text-brass-300">
                 “{site.philosophy}”
               </p>
               <Link href="/about" className="btn-leaf mt-8">
                 Read our story
-                <ArrowRight className="h-4 w-4" />
+                <ArrowUpRight className="h-4 w-4" />
               </Link>
             </Reveal>
           </div>
         </div>
       </section>
 
-      {/* ───────────────── FAQ ───────────────── */}
-      <section className="section">
+      {/* ═══════════════ ASSURANCE ═══════════════ */}
+      <section className="section bg-cream-50">
         <div className="container-px">
           <SectionHeading
-            eyebrow="FAQs"
-            title="Questions, answered"
-            subtitle="For medical suitability and safety questions, we rely only on verified, manufacturer-approved information."
+            eyebrow="Our Promise"
+            title="Built on Trust & Transparency"
+            subtitle="KadhaPlus is a herbal wellness product — and we describe it honestly as exactly that."
           />
-          <div className="mx-auto mt-12 max-w-3xl">
-            <Accordion items={faqs.slice(0, 6)} />
-            <Reveal className="mt-6 text-center">
+          <div className="mt-14 grid gap-6 md:grid-cols-3">
+            {whyTrust.map((w, i) => (
+              <Reveal key={w.title} delay={i * 0.08}>
+                <div className="h-full rounded-3xl border border-herbal-100 bg-white p-8 text-center">
+                  <span className="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-leaf-50 text-herbal-600">
+                    <w.icon className="h-7 w-7" />
+                  </span>
+                  <h3 className="mt-5 font-display text-lg tracking-wide text-herbal-900">
+                    {w.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+                    {w.desc}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal className="mx-auto mt-10 flex max-w-xl items-center justify-center gap-2 text-center text-sm text-ink-muted">
+            <Star className="h-4 w-4 text-brass-500" />
+            Wellness-oriented messaging only — no unverified medical claims. See our{" "}
+            <Link href="/disclaimer" className="underline">
+              Disclaimer
+            </Link>
+            .
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ═══════════════ FAQ + CTA ═══════════════ */}
+      <section className="section bg-gradient-to-b from-mint-100 to-cream-50">
+        <div className="container-px grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
+          <div>
+            <SectionHeading
+              align="left"
+              eyebrow="FAQs"
+              title="Good to Know"
+              subtitle="For safety and suitability questions we rely only on verified, manufacturer-approved information."
+            />
+            <div className="mt-6 hidden lg:block">
+              <SachetFan className="max-w-xs pb-6 pt-2" />
+            </div>
+          </div>
+          <div>
+            <Accordion items={faqs.slice(0, 5)} />
+            <Reveal className="mt-6">
               <Link href="/faqs" className="btn-ghost">
                 View all FAQs
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Reveal>
           </div>
-        </div>
-      </section>
-
-      {/* ───────────────── Contact ───────────────── */}
-      <section id="contact" className="section bg-gradient-to-b from-mint-100 to-cream-50">
-        <div className="container-px grid gap-12 lg:grid-cols-2">
-          <div>
-            <SectionHeading
-              align="left"
-              eyebrow="Contact Us"
-              title="We'd love to hear from you"
-              subtitle="Questions about KadhaPlus, bulk enquiries, or feedback — reach out and our team will be glad to help."
-            />
-            <div className="mt-8 space-y-4">
-              <a
-                href={`tel:${site.contact.phones[0]}`}
-                className="card flex items-center gap-4 p-5 transition-colors hover:border-herbal-300"
-              >
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-leaf-50 text-leaf-600">
-                  <Phone className="h-5 w-5" />
-                </span>
-                <span>
-                  <span className="block text-xs text-ink-muted">Call us</span>
-                  <span className="font-semibold text-herbal-900">
-                    {site.contact.phones.join(" · ")}
-                  </span>
-                </span>
-              </a>
-              <div className="card flex items-center gap-4 p-5">
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-leaf-50 text-leaf-600">
-                  <Mail className="h-5 w-5" />
-                </span>
-                <span>
-                  <span className="block text-xs text-ink-muted">Email</span>
-                  <a
-                    href={`mailto:${site.contact.email}`}
-                    className="font-semibold text-herbal-900 hover:text-herbal-600"
-                  >
-                    {site.contact.email}
-                  </a>
-                </span>
-              </div>
-              <div className="card flex items-start gap-4 p-5">
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-leaf-50 text-leaf-600">
-                  <MapPin className="h-5 w-5" />
-                </span>
-                <span>
-                  <span className="block text-xs text-ink-muted">Office</span>
-                  <span className="font-semibold text-herbal-900">
-                    {site.contact.address.lines.join(", ")}
-                  </span>
-                </span>
-              </div>
-            </div>
-          </div>
-          <ContactForm />
         </div>
       </section>
     </>

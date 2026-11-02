@@ -102,10 +102,20 @@ const config: Config = {
           "0%": { opacity: "0", transform: "translateY(20px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
+        marquee: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
+        "spin-slow": {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
       },
       animation: {
         float: "float 6s ease-in-out infinite",
         "fade-up": "fade-up 0.7s ease-out both",
+        marquee: "marquee 28s linear infinite",
+        "spin-slow": "spin-slow 24s linear infinite",
       },
       backgroundImage: {
         "mint-glow":
