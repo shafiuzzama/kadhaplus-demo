@@ -33,7 +33,7 @@ const slides: Slide[] = [
     sky: "from-[#cfe6d8] via-[#f3f1e4] to-[#fbf6e6]",
     line1: "Dadi maa ka nuskha, ab sachet me.",
     line2: "KadhaPlus Instant Kadha.",
-    sub: "Jadi-bootiyon se bana herbal kadha powder. Garam paani me ghoolo, aur pyaala taiyaar.",
+    sub: "17 jadi-bootiyon se bana herbal kadha powder. Garam paani me ghoolo, aur pyaala taiyaar.",
     cta: { label: "Shop Now", href: "#product" },
   },
   {
@@ -49,7 +49,7 @@ const slides: Slide[] = [
     id: "price",
     variant: "price",
     sky: "from-[#f2c9a6] via-[#f7e3cc] to-[#fbf6e6]",
-    line1: "Pack of 5 sachets, sirf ₹89.",
+    line1: "Pack of 5 sachets, sirf ₹100.",
     line2: "₹20 ka ek sachet.",
     sub: "Na ubalna, na jhanjhat. Ghar, office ya safar me — bas garam paani chahiye.",
     cta: { label: "Order Pack of 5", href: "#product" },
