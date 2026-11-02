@@ -3,13 +3,15 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Menu, X, Leaf } from "lucide-react";
+import { Menu, X, ShoppingBag, User } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import Logo from "@/components/ui/Logo";
 import { nav } from "@/lib/site";
+import { useStore } from "@/components/store/StoreProvider";
 
 export default function Navbar() {
   const pathname = usePathname();
+  const { cart, user, openDrawer } = useStore();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -65,11 +67,27 @@ export default function Navbar() {
           })}
         </ul>
 
-        <div className="flex items-center gap-2">
-          <Link href="/product" className="btn-primary hidden sm:inline-flex">
-            <Leaf className="h-4 w-4" />
-            Explore Product
+        <div className="flex items-center gap-1.5 sm:gap-2">
+          <Link
+            href={user ? "/account" : "/login"}
+            aria-label={user ? "My account" : "Sign in"}
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-herbal-100 bg-white text-herbal-700 transition-colors hover:bg-herbal-50"
+          >
+            <User className="h-5 w-5" />
           </Link>
+          <button
+            type="button"
+            onClick={openDrawer}
+            aria-label="Open cart"
+            className="relative inline-flex h-11 w-11 items-center justify-center rounded-full border border-herbal-100 bg-white text-herbal-700 transition-colors hover:bg-herbal-50"
+          >
+            <ShoppingBag className="h-5 w-5" />
+            {cart.count > 0 && (
+              <span className="absolute -right-1 -top-1 flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-herbal-600 px-1 text-[11px] font-semibold text-white">
+                {cart.count}
+              </span>
+            )}
+          </button>
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
@@ -112,10 +130,17 @@ export default function Navbar() {
                   </li>
                 );
               })}
-              <li className="mt-2">
-                <Link href="/product" className="btn-primary w-full">
-                  <Leaf className="h-4 w-4" />
-                  Explore Product
+              <li className="mt-2 grid grid-cols-2 gap-2">
+                <Link href="/product" className="btn-primary">
+                  <ShoppingBag className="h-4 w-4" />
+                  Shop Now
+                </Link>
+                <Link
+                  href={user ? "/account" : "/login"}
+                  className="btn-outline"
+                >
+                  <User className="h-4 w-4" />
+                  {user ? "Account" : "Sign In"}
                 </Link>
               </li>
             </ul>

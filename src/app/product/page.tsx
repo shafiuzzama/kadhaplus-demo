@@ -6,6 +6,7 @@ import Reveal from "@/components/ui/Reveal";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Placeholder from "@/components/ui/Placeholder";
 import ProductCard from "@/components/ProductCard";
+import BuyBox, { type BuyVariant } from "@/components/store/BuyBox";
 import {
   ProductBox3D,
   SachetFan,
@@ -16,11 +17,14 @@ import {
   BoxBackPanel,
 } from "@/components/product/ProductVisuals";
 import { site } from "@/lib/site";
+import prisma from "@/lib/prisma";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Our Product",
   description:
-    "KadhaPlus Classic Kadha — instant herbal kadha granules. ₹20 per sachet, or a pack of 5 for ₹89. Front, side and back packaging views.",
+    "KadhaPlus Classic Kadha — instant herbal kadha granules. Buy a single sachet or a pack of 5. Add to cart or buy now.",
 };
 
 const highlights = [
@@ -30,7 +34,20 @@ const highlights = [
   "Ready in a cup — just follow the pack",
 ];
 
-export default function ProductPage() {
+export default async function ProductPage() {
+  const variantRows = await prisma.variant.findMany({
+    where: { product: { slug: "classic-kadha" } },
+    orderBy: { price: "asc" },
+  });
+  const variants: BuyVariant[] = variantRows.map((v) => ({
+    id: v.id,
+    name: v.name,
+    price: v.price,
+    mrp: v.mrp,
+    stock: v.stock,
+    sachets: v.sachets,
+    isDefault: v.isDefault,
+  }));
   return (
     <>
       <PageHeader
@@ -59,55 +76,27 @@ export default function ProductPage() {
                 {site.product.shortName}
               </h2>
 
-              {/* quiet pricing */}
-              <div className="mt-5 flex items-center gap-5 text-sm text-ink-soft">
-                <span>
-                  <span className="font-display text-2xl font-semibold text-herbal-800">
-                    {site.product.sachetPriceLabel}
-                  </span>{" "}
-                  / sachet
-                </span>
-                <span className="h-5 w-px bg-herbal-200" />
-                <span>
-                  <span className="font-display text-2xl font-semibold text-herbal-800">
-                    {site.product.priceLabel}
-                  </span>{" "}
-                  / pack of 5
-                </span>
-              </div>
-
-              <p className="mt-5 max-w-lg leading-relaxed text-ink-soft">
+              <p className="mt-4 max-w-lg leading-relaxed text-ink-soft">
                 Each sachet carries the comforting character of classic kadha in
                 an instant granule format. Buy a single sachet to try, or save
                 with the premium box of five.
               </p>
 
-              <ul className="mt-6 space-y-3">
+              <ul className="mt-5 grid grid-cols-1 gap-2 sm:grid-cols-2">
                 {highlights.map((h) => (
-                  <li key={h} className="flex items-center gap-3 text-sm text-ink-soft">
-                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-leaf-500 text-white">
-                      <Check className="h-3.5 w-3.5" />
+                  <li key={h} className="flex items-center gap-2 text-sm text-ink-soft">
+                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-leaf-500 text-white">
+                      <Check className="h-3 w-3" />
                     </span>
                     {h}
                   </li>
                 ))}
               </ul>
-
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Link href="/how-to-prepare" className="btn-primary">
-                  How to prepare
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-                <Link href="/ingredients" className="btn-outline">
-                  View ingredients
-                </Link>
-              </div>
-              <p className="mt-4 text-xs text-ink-muted">
-                Prices shown here on the website ({site.product.sachetPriceLabel}{" "}
-                per sachet · {site.product.priceLabel} per pack) may not be
-                printed on the packaging.
-              </p>
             </Reveal>
+
+            <div className="mt-7">
+              <BuyBox variants={variants} />
+            </div>
           </div>
         </div>
       </section>

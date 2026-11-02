@@ -4,6 +4,8 @@ import "./globals.css";
 import PromoBar from "@/components/PromoBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { StoreProvider } from "@/components/store/StoreProvider";
+import CartDrawer from "@/components/store/CartDrawer";
 import { site } from "@/lib/site";
 
 const sans = Poppins({
@@ -78,10 +80,13 @@ export default function RootLayout({
       className={`${sans.variable} ${display.variable} ${serif.variable}`}
     >
       <body className="flex min-h-screen flex-col">
-        <PromoBar />
-        <Navbar />
-        <main className="flex-1 overflow-x-clip">{children}</main>
-        <Footer />
+        <StoreProvider>
+          <PromoBar />
+          <Navbar />
+          <main className="flex-1 overflow-x-clip">{children}</main>
+          <Footer />
+          <CartDrawer />
+        </StoreProvider>
       </body>
     </html>
   );
