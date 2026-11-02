@@ -8,7 +8,6 @@ import {
 } from "lucide-react";
 import { site } from "@/lib/site";
 import prisma from "@/lib/prisma";
-import { rupees } from "@/lib/money";
 import {
   features,
   prepareSteps,
@@ -21,12 +20,9 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import Accordion from "@/components/ui/Accordion";
 import Marquee from "@/components/Marquee";
 import BuyBox, { type BuyVariant } from "@/components/store/BuyBox";
-import {
-  ProductBox3D,
-  SachetStanding,
-  SachetFan,
-} from "@/components/product/ProductVisuals";
-import { Sprig, Emblem } from "@/components/product/PackArt";
+import { ProductBox3D, SachetFan } from "@/components/product/ProductVisuals";
+import { Sprig } from "@/components/product/PackArt";
+import HeroSlider from "@/components/HeroSlider";
 
 export const dynamic = "force-dynamic";
 
@@ -44,87 +40,10 @@ export default async function HomePage() {
     sachets: v.sachets,
     isDefault: v.isDefault,
   }));
-  const fromPrice = variants.length ? Math.min(...variants.map((v) => v.price)) : 2000;
-
   return (
     <>
-      {/* ═══════════════ HERO ═══════════════ */}
-      <section className="relative overflow-hidden bg-cream-50">
-        <div className="absolute inset-0 leaf-texture" />
-        <Sprig className="absolute -left-10 top-24 hidden h-40 w-40 text-herbal-900/[0.04] lg:block" />
-        <div className="container-px relative grid items-center gap-10 py-12 lg:grid-cols-[1.05fr_0.95fr] lg:py-16">
-          <Reveal>
-            <span className="eyebrow mb-6">
-              <Leaf className="h-3.5 w-3.5" />
-              {site.tagline}
-            </span>
-            <h1 className="font-display text-[clamp(3rem,8vw,5.75rem)] leading-[0.92] tracking-wide text-herbal-900">
-              The Kadha Ritual,
-              <br />
-              <span className="text-clay-500">Reimagined</span> for Today.
-            </h1>
-            <p className="mt-6 max-w-lg font-serif text-lg italic text-herbal-700">
-              Dadi maa ka nuskha — now in a single, convenient sachet.
-            </p>
-            <p className="mt-4 max-w-md leading-relaxed text-ink-soft">
-              {site.name} brings the warm, familiar comfort of traditional Indian
-              kadha into an instant herbal beverage. Tear, pour, stir — a moment
-              of warmth, whenever you need it.
-            </p>
-
-            <div className="mt-7 flex items-center gap-5">
-              <span className="text-sm text-ink-soft">
-                From{" "}
-                <span className="font-display text-2xl text-herbal-800">
-                  {rupees(fromPrice)}
-                </span>
-              </span>
-              <span className="h-6 w-px bg-herbal-200" />
-              <span className="text-sm text-ink-muted">
-                Single-serve · Ready in minutes
-              </span>
-            </div>
-
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link href="/product" className="btn-primary">
-                Shop the Ritual
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link href="/about" className="btn-outline">
-                Our Story
-              </Link>
-            </div>
-          </Reveal>
-
-          {/* Arch product panel */}
-          <Reveal delay={0.12} className="relative mx-auto w-full max-w-md">
-            <div className="relative aspect-[4/5] arch-top overflow-hidden bg-gradient-to-b from-herbal-800 via-herbal-900 to-herbal-950 shadow-glow ring-1 ring-brass-400/20">
-              <Sprig className="absolute -right-6 bottom-4 h-44 w-44 text-brass-400/10" />
-              <div className="absolute left-1/2 top-[14%] h-[72%] w-[86%] -translate-x-1/2 arch-top border border-brass-400/25" />
-              <div className="absolute inset-0 flex items-end justify-center pb-10">
-                <div className="w-[62%] animate-float">
-                  <ProductBox3D priority />
-                </div>
-              </div>
-              <div className="absolute -left-2 bottom-6 w-[26%]">
-                <SachetStanding priority />
-              </div>
-            </div>
-            {/* rotating seal */}
-            <div className="absolute -left-3 top-6 flex h-24 w-24 items-center justify-center rounded-full bg-cream-50 shadow-soft ring-1 ring-brass-200 sm:h-28 sm:w-28">
-              <Emblem className="w-16 sm:w-20" />
-            </div>
-            <div className="absolute -right-2 top-10 rounded-2xl bg-white px-4 py-3 text-center shadow-soft ring-1 ring-herbal-100">
-              <p className="font-display text-2xl text-herbal-800">
-                {site.product.priceLabel}
-              </p>
-              <p className="text-[10px] uppercase tracking-wider text-ink-muted">
-                Pack of 5
-              </p>
-            </div>
-          </Reveal>
-        </div>
-      </section>
+      {/* ═══════════════ HERO SLIDER ═══════════════ */}
+      <HeroSlider />
 
       {/* ═══════════════ MARQUEE ═══════════════ */}
       <Marquee
