@@ -36,24 +36,21 @@ export default function HomePage() {
               granules. Just add to a cup and enjoy.
             </p>
 
-            {/* pricing highlights */}
-            <div className="mt-7 flex flex-wrap gap-3">
-              <div className="flex items-center gap-3 rounded-2xl border border-spice-200 bg-spice-50 px-5 py-3">
-                <span className="font-display text-2xl font-bold text-spice-600">
+            {/* quiet pricing line */}
+            <div className="mt-7 flex items-center gap-4 text-sm text-ink-soft">
+              <span>
+                <span className="font-display text-lg font-semibold text-herbal-800">
                   {site.product.sachetPriceLabel}
-                </span>
-                <span className="text-sm font-medium text-ink-soft">
-                  per sachet
-                </span>
-              </div>
-              <div className="flex items-center gap-3 rounded-2xl border border-herbal-200 bg-herbal-50 px-5 py-3">
-                <span className="font-display text-2xl font-bold text-herbal-700">
+                </span>{" "}
+                / sachet
+              </span>
+              <span className="h-4 w-px bg-herbal-200" />
+              <span>
+                <span className="font-display text-lg font-semibold text-herbal-800">
                   {site.product.priceLabel}
-                </span>
-                <span className="text-sm font-medium text-ink-soft">
-                  Pack of 5 sachets
-                </span>
-              </div>
+                </span>{" "}
+                / pack of 5
+              </span>
             </div>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -92,7 +89,7 @@ export default function HomePage() {
                     </p>
                   </div>
                   <div className="card flex items-center gap-3 p-5">
-                    <span className="font-display text-2xl font-bold text-spice-600">
+                    <span className="font-display text-2xl font-semibold text-herbal-800">
                       {site.product.sachetPriceLabel}
                     </span>
                     <span className="text-sm text-ink-soft">per single-serve sachet</span>

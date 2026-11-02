@@ -58,24 +58,21 @@ export default function ProductPage() {
                 {site.product.shortName}
               </h2>
 
-              {/* dual pricing */}
-              <div className="mt-5 flex flex-wrap gap-3">
-                <div className="flex items-center gap-3 rounded-2xl border border-spice-200 bg-spice-50 px-5 py-3">
-                  <span className="font-display text-3xl font-bold text-spice-600">
+              {/* quiet pricing */}
+              <div className="mt-5 flex items-center gap-5 text-sm text-ink-soft">
+                <span>
+                  <span className="font-display text-2xl font-semibold text-herbal-800">
                     {site.product.sachetPriceLabel}
-                  </span>
-                  <span className="text-sm font-medium text-ink-soft">
-                    per sachet
-                  </span>
-                </div>
-                <div className="flex items-center gap-3 rounded-2xl border border-herbal-200 bg-herbal-50 px-5 py-3">
-                  <span className="font-display text-3xl font-bold text-herbal-700">
+                  </span>{" "}
+                  / sachet
+                </span>
+                <span className="h-5 w-px bg-herbal-200" />
+                <span>
+                  <span className="font-display text-2xl font-semibold text-herbal-800">
                     {site.product.priceLabel}
-                  </span>
-                  <span className="text-sm font-medium text-ink-soft">
-                    Pack of 5 sachets
-                  </span>
-                </div>
+                  </span>{" "}
+                  / pack of 5
+                </span>
               </div>
 
               <p className="mt-5 max-w-lg leading-relaxed text-ink-soft">
@@ -115,7 +112,7 @@ export default function ProductPage() {
       </section>
 
       {/* Buy options */}
-      <section className="section bg-gradient-to-b from-cream-50 to-spice-50">
+      <section className="section bg-gradient-to-b from-cream-50 to-mint-100">
         <div className="container-px">
           <SectionHeading
             eyebrow="Choose Your Pack"
@@ -131,7 +128,7 @@ export default function ProductPage() {
                   Individual Sachet
                 </h3>
                 <p className="mt-1 text-sm text-ink-muted">Single-serve · try it first</p>
-                <p className="mt-4 font-display text-3xl font-bold text-spice-600">
+                <p className="mt-4 font-display text-3xl font-semibold text-herbal-800">
                   {site.product.sachetPriceLabel}
                 </p>
               </div>
@@ -148,7 +145,7 @@ export default function ProductPage() {
                   Classic Kadha Box
                 </h3>
                 <p className="mt-1 text-sm text-ink-muted">Pack of 5 sachets</p>
-                <p className="mt-4 font-display text-3xl font-bold text-herbal-700">
+                <p className="mt-4 font-display text-3xl font-semibold text-herbal-800">
                   {site.product.priceLabel}
                 </p>
               </div>

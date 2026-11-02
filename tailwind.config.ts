@@ -53,10 +53,19 @@ const config: Config = {
           900: "#782e14",
         },
         clay: {
+          300: "#d08a63",
           400: "#c0683c",
           500: "#a8532c",
           600: "#8a4122",
           700: "#6d331c",
+        },
+        // Brass / gold — thin premium line & emblem accents
+        brass: {
+          200: "#e7d4a8",
+          300: "#d8bd87",
+          400: "#c9a86a",
+          500: "#b8924f",
+          600: "#9a7638",
         },
         cream: {
           50: "#fdfbf4",
