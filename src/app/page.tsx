@@ -22,7 +22,7 @@ import Marquee from "@/components/Marquee";
 import BuyBox, { type BuyVariant } from "@/components/store/BuyBox";
 import { ProductBox3D, SachetFan } from "@/components/product/ProductVisuals";
 import { Sprig } from "@/components/product/PackArt";
-import HeroSlider from "@/components/HeroSlider";
+import KadhaHeroBanner from "@/components/KadhaHeroBanner";
 
 export const dynamic = "force-dynamic";
 
@@ -43,7 +43,7 @@ export default async function HomePage() {
   return (
     <>
       {/* ═══════════════ HERO SLIDER ═══════════════ */}
-      <HeroSlider />
+      <KadhaHeroBanner />
 
       {/* ═══════════════ MARQUEE ═══════════════ */}
       <Marquee
