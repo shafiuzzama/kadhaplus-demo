@@ -35,10 +35,10 @@ export default function Navbar() {
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-all duration-300 ${
+      className={`sticky top-0 z-50 bg-white transition-all duration-300 ${
         scrolled
-          ? "border-b border-herbal-100 bg-cream-50/90 backdrop-blur-md"
-          : "border-b border-transparent bg-cream-50/60 backdrop-blur-sm"
+          ? "border-b border-herbal-100 shadow-sm"
+          : "border-b border-herbal-100/70"
       }`}
     >
       <nav className="container-px flex h-16 items-center justify-between sm:h-20">
@@ -100,7 +100,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="overflow-hidden border-t border-herbal-100 bg-cream-50 xl:hidden"
+            className="overflow-hidden border-t border-herbal-100 bg-white xl:hidden"
           >
             <ul className="container-px flex flex-col gap-1 py-4">
               {nav.map((item) => {
