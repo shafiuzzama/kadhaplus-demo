@@ -7,7 +7,7 @@ import {
   Star,
 } from "lucide-react";
 import { site } from "@/lib/site";
-import prisma from "@/lib/prisma";
+import { VARIANTS } from "@/lib/catalog";
 import {
   features,
   prepareSteps,
@@ -24,14 +24,8 @@ import { ProductBox3D, SachetFan } from "@/components/product/ProductVisuals";
 import { Sprig } from "@/components/product/PackArt";
 import KadhaHeroBanner from "@/components/KadhaHeroBanner";
 
-export const dynamic = "force-dynamic";
-
-export default async function HomePage() {
-  const variantRows = await prisma.variant.findMany({
-    where: { product: { slug: "classic-kadha" } },
-    orderBy: { price: "asc" },
-  });
-  const variants: BuyVariant[] = variantRows.map((v) => ({
+export default function HomePage() {
+  const variants: BuyVariant[] = VARIANTS.map((v) => ({
     id: v.id,
     name: v.name,
     price: v.price,

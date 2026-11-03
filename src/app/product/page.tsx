@@ -17,9 +17,7 @@ import {
   BoxBackPanel,
 } from "@/components/product/ProductVisuals";
 import { site } from "@/lib/site";
-import prisma from "@/lib/prisma";
-
-export const dynamic = "force-dynamic";
+import { VARIANTS } from "@/lib/catalog";
 
 export const metadata: Metadata = {
   title: "Our Product",
@@ -34,12 +32,8 @@ const highlights = [
   "Ready in a cup — just follow the pack",
 ];
 
-export default async function ProductPage() {
-  const variantRows = await prisma.variant.findMany({
-    where: { product: { slug: "classic-kadha" } },
-    orderBy: { price: "asc" },
-  });
-  const variants: BuyVariant[] = variantRows.map((v) => ({
+export default function ProductPage() {
+  const variants: BuyVariant[] = VARIANTS.map((v) => ({
     id: v.id,
     name: v.name,
     price: v.price,

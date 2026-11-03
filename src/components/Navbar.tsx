@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Menu, X, ShoppingBag, User } from "lucide-react";
+import { Menu, X, ShoppingBag } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import Logo from "@/components/ui/Logo";
 import { nav } from "@/lib/site";
@@ -11,7 +11,7 @@ import { useStore } from "@/components/store/StoreProvider";
 
 export default function Navbar() {
   const pathname = usePathname();
-  const { cart, user, openDrawer } = useStore();
+  const { cart, openDrawer } = useStore();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -68,13 +68,6 @@ export default function Navbar() {
         </ul>
 
         <div className="flex items-center gap-1.5 sm:gap-2">
-          <Link
-            href={user ? "/account" : "/login"}
-            aria-label={user ? "My account" : "Sign in"}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-herbal-100 bg-white text-herbal-700 transition-colors hover:bg-herbal-50"
-          >
-            <User className="h-5 w-5" />
-          </Link>
           <button
             type="button"
             onClick={openDrawer}
@@ -130,17 +123,10 @@ export default function Navbar() {
                   </li>
                 );
               })}
-              <li className="mt-2 grid grid-cols-2 gap-2">
-                <Link href="/product" className="btn-primary">
+              <li className="mt-2">
+                <Link href="/product" className="btn-primary w-full">
                   <ShoppingBag className="h-4 w-4" />
                   Shop Now
-                </Link>
-                <Link
-                  href={user ? "/account" : "/login"}
-                  className="btn-outline"
-                >
-                  <User className="h-4 w-4" />
-                  {user ? "Account" : "Sign In"}
                 </Link>
               </li>
             </ul>
