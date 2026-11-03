@@ -24,19 +24,25 @@
     @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10;
   }
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-leaf-400 focus-visible:ring-offset-2;
+    @apply relative inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-sm font-semibold tracking-wide transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-leaf-400 focus-visible:ring-offset-2 active:translate-y-0;
   }
   .btn-primary {
-    @apply btn bg-herbal-600 text-white shadow-soft hover:bg-herbal-700 hover:shadow-glow;
+    @apply btn bg-gradient-to-br from-herbal-500 to-herbal-700 text-white shadow-[0_12px_30px_-10px_rgba(46,86,54,0.6)] hover:-translate-y-0.5 hover:shadow-[0_20px_42px_-12px_rgba(46,86,54,0.72)] hover:brightness-[1.06];
   }
   .btn-leaf {
-    @apply btn bg-leaf-500 text-white shadow-soft hover:bg-leaf-600;
+    @apply btn bg-gradient-to-br from-leaf-400 to-leaf-600 text-white shadow-[0_12px_30px_-10px_rgba(95,165,47,0.55)] hover:-translate-y-0.5 hover:shadow-[0_20px_42px_-12px_rgba(95,165,47,0.68)] hover:brightness-[1.05];
+  }
+  .btn-spice {
+    @apply btn bg-gradient-to-br from-spice-400 to-spice-600 text-white shadow-[0_12px_30px_-10px_rgba(226,90,15,0.5)] hover:-translate-y-0.5 hover:shadow-[0_20px_42px_-12px_rgba(226,90,15,0.62)] hover:brightness-[1.05];
   }
   .btn-outline {
-    @apply btn border border-herbal-200 bg-white/70 text-herbal-700 hover:border-herbal-400 hover:bg-white;
+    @apply btn border-2 border-herbal-200 bg-white/80 text-herbal-700 backdrop-blur hover:-translate-y-0.5 hover:border-herbal-500 hover:bg-white hover:text-herbal-800 hover:shadow-soft;
   }
   .btn-ghost {
     @apply btn text-herbal-700 hover:bg-herbal-50;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-herbal-100 bg-white/85 px-3.5 py-1.5 text-xs font-medium text-herbal-700 shadow-sm backdrop-blur;
   }
   .eyebrow {
     @apply inline-flex items-center gap-2 rounded-full border border-leaf-200 bg-leaf-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-herbal-700;

@@ -125,17 +125,17 @@ export default function BuyBox({ variants }: { variants: BuyVariant[] }) {
         <button
           onClick={handleAdd}
           disabled={!inStock || busy !== null}
-          className="btn-outline flex-1 disabled:opacity-50"
+          className="btn-primary flex-1 !py-4 text-[0.95rem] disabled:opacity-50"
         >
-          <ShoppingBag className="h-4 w-4" />
+          <ShoppingBag className="h-[18px] w-[18px]" />
           {busy === "cart" ? "Adding…" : "Add to Cart"}
         </button>
         <button
           onClick={handleBuyNow}
           disabled={!inStock || busy !== null}
-          className="btn-primary flex-1 disabled:opacity-50"
+          className="btn-spice flex-1 !py-4 text-[0.95rem] disabled:opacity-50"
         >
-          <Zap className="h-4 w-4" />
+          <Zap className="h-[18px] w-[18px]" />
           {busy === "buy" ? "…" : "Buy Now"}
         </button>
       </div>
