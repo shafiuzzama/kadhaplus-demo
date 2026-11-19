@@ -22,6 +22,7 @@ import Accordion from "@/components/ui/Accordion";
 import BuyBox, { type BuyVariant } from "@/components/store/BuyBox";
 import { Sprig } from "@/components/product/PackArt";
 import KadhaHeroBanner from "@/components/KadhaHeroBanner";
+import BrandExperience from "@/components/BrandExperience";
 
 /* ── Final product packaging (user-supplied) ───────────────────────────── */
 const IMG = "/images/kadhaplus";
@@ -150,6 +151,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ═══════════ THE KADHAPLUS EXPERIENCE ═══════════ */}
+      <BrandExperience />
 
       {/* ═══════════ WHY KADHAPLUS ═══════════ */}
       <section className="section bg-cream-50">
