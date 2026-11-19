@@ -44,10 +44,10 @@ export default function ProductGallery({ images }: { images: GalleryImage[] }) {
                   onClick={() => setActive(i)}
                   aria-label={`View image ${i + 1}: ${img.alt}`}
                   aria-current={on}
-                  className={`relative block h-[72px] w-[72px] overflow-hidden rounded-xl bg-cream-50 ring-1 transition-all lg:h-20 lg:w-20 ${
+                  className={`relative block h-[68px] w-[68px] overflow-hidden rounded-lg bg-cream-50 transition-all lg:h-[76px] lg:w-[76px] ${
                     on
-                      ? "ring-2 ring-herbal-600 ring-offset-1"
-                      : "ring-herbal-100 hover:ring-herbal-300"
+                      ? "ring-1 ring-herbal-800"
+                      : "ring-1 ring-black/[0.07] hover:ring-black/20"
                   }`}
                 >
                   <Image
@@ -55,7 +55,7 @@ export default function ProductGallery({ images }: { images: GalleryImage[] }) {
                     alt=""
                     fill
                     sizes="88px"
-                    className="object-contain p-1"
+                    className="object-contain p-1.5"
                   />
                 </button>
               </li>
@@ -126,7 +126,7 @@ function MainStage({
           if (e.key === "ArrowLeft") onPrev();
           if (e.key === "ArrowRight") onNext();
         }}
-        className="group relative aspect-square cursor-zoom-in overflow-hidden rounded-3xl border border-herbal-100 bg-gradient-to-b from-white to-cream-50 shadow-card"
+        className="group relative aspect-square cursor-zoom-in overflow-hidden rounded-2xl bg-white ring-1 ring-black/[0.06] shadow-[0_34px_70px_-38px_rgba(20,45,30,0.4)]"
       >
         <AnimatePresence mode="wait">
           <motion.div
@@ -143,7 +143,7 @@ function MainStage({
               fill
               priority={index === 0}
               sizes="(min-width: 1024px) 520px, 100vw"
-              className="object-contain p-5 transition-transform duration-200 ease-out sm:p-8"
+              className="object-contain p-6 transition-transform duration-200 ease-out sm:p-10"
               style={{
                 transformOrigin: origin,
                 transform: zooming ? "scale(1.9)" : "scale(1)",
@@ -153,8 +153,8 @@ function MainStage({
         </AnimatePresence>
 
         {/* zoom hint */}
-        <span className="pointer-events-none absolute right-3 top-3 z-10 inline-flex items-center gap-1 rounded-full bg-white/85 px-2.5 py-1 text-[11px] font-medium text-herbal-700 opacity-0 shadow-sm backdrop-blur transition-opacity group-hover:opacity-100">
-          <ZoomIn className="h-3.5 w-3.5" /> Hover to zoom · click to expand
+        <span className="pointer-events-none absolute right-4 top-4 z-10 inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-ink-muted opacity-0 ring-1 ring-black/[0.06] backdrop-blur transition-opacity group-hover:opacity-100">
+          <ZoomIn className="h-4 w-4" />
         </span>
       </div>
 
@@ -174,7 +174,7 @@ function MainStage({
               onClick();
             }}
             aria-label={dir === "prev" ? "Previous image" : "Next image"}
-            className={`absolute top-1/2 ${cls} z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-herbal-100 bg-white/90 text-herbal-700 shadow-sm backdrop-blur transition-colors hover:bg-white`}
+            className={`absolute top-1/2 ${cls} z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/95 text-ink ring-1 ring-black/[0.06] backdrop-blur transition-colors hover:bg-white`}
           >
             <Icon className="h-5 w-5" />
           </button>

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Minus, Plus, ShoppingBag, Zap, Check } from "lucide-react";
+import { Minus, Plus, ShoppingBag, ArrowRight, Check } from "lucide-react";
 import { useStore } from "./StoreProvider";
 import { rupees } from "@/lib/money";
 
@@ -43,9 +43,9 @@ export default function BuyBox({ variants }: { variants: BuyVariant[] }) {
   }
 
   return (
-    <div className="rounded-3xl border border-herbal-100 bg-white p-6 shadow-card sm:p-7">
+    <div className="rounded-2xl border border-black/[0.07] bg-white p-6 shadow-[0_18px_40px_-28px_rgba(20,45,30,0.3)] sm:p-7">
       {/* variant options */}
-      <p className="text-xs font-semibold uppercase tracking-wider text-ink-muted">
+      <p className="text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-ink-muted">
         Choose your pack
       </p>
       <div className="mt-3 grid gap-3 sm:grid-cols-2">
@@ -56,14 +56,14 @@ export default function BuyBox({ variants }: { variants: BuyVariant[] }) {
               key={v.id}
               type="button"
               onClick={() => setSelectedId(v.id)}
-              className={`relative rounded-2xl border p-4 text-left transition-all ${
+              className={`relative rounded-lg border p-4 text-left transition-all ${
                 active
-                  ? "border-herbal-600 bg-herbal-50 ring-1 ring-herbal-600"
-                  : "border-herbal-100 hover:border-herbal-300"
+                  ? "border-herbal-800 bg-herbal-50/60"
+                  : "border-black/10 hover:border-herbal-400"
               }`}
             >
               {active && (
-                <span className="absolute right-3 top-3 flex h-5 w-5 items-center justify-center rounded-full bg-herbal-600 text-white">
+                <span className="absolute right-3 top-3 flex h-5 w-5 items-center justify-center rounded-full bg-herbal-800 text-white">
                   <Check className="h-3 w-3" />
                 </span>
               )}
@@ -101,7 +101,7 @@ export default function BuyBox({ variants }: { variants: BuyVariant[] }) {
           </div>
           <p className="mt-1 text-xs text-ink-muted">Inclusive of all taxes</p>
         </div>
-        <div className="flex items-center gap-2 rounded-xl border border-herbal-200 p-1">
+        <div className="flex items-center gap-2 rounded-lg border border-black/10 p-1">
           <button
             aria-label="Decrease quantity"
             onClick={() => setQty((q) => Math.max(1, q - 1))}
@@ -125,7 +125,7 @@ export default function BuyBox({ variants }: { variants: BuyVariant[] }) {
         <button
           onClick={handleAdd}
           disabled={!inStock || busy !== null}
-          className="btn-primary flex-1 !py-4 text-[0.95rem] disabled:opacity-50"
+          className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-herbal-800 px-6 py-4 text-sm font-semibold tracking-wide text-white transition-colors hover:bg-herbal-900 disabled:opacity-50"
         >
           <ShoppingBag className="h-[18px] w-[18px]" />
           {busy === "cart" ? "Adding…" : "Add to Cart"}
@@ -133,10 +133,10 @@ export default function BuyBox({ variants }: { variants: BuyVariant[] }) {
         <button
           onClick={handleBuyNow}
           disabled={!inStock || busy !== null}
-          className="btn-spice flex-1 !py-4 text-[0.95rem] disabled:opacity-50"
+          className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-navy px-6 py-4 text-sm font-semibold tracking-wide text-white transition-colors hover:bg-[#122b47] disabled:opacity-50"
         >
-          <Zap className="h-[18px] w-[18px]" />
           {busy === "buy" ? "…" : "Buy Now"}
+          <ArrowRight className="h-[18px] w-[18px]" />
         </button>
       </div>
       <p className="mt-3 text-center text-xs text-ink-muted">

@@ -18,7 +18,6 @@ import ProductGallery, {
   type GalleryImage,
 } from "@/components/product/ProductGallery";
 import BuyBox, { type BuyVariant } from "@/components/store/BuyBox";
-import { site } from "@/lib/site";
 import { VARIANTS } from "@/lib/catalog";
 
 export const metadata: Metadata = {
@@ -70,13 +69,6 @@ const STEPS = [
   { n: 3, title: "Drink warm", desc: "Stir until dissolved and enjoy your kadha warm." },
 ];
 
-const LABEL_BADGES = [
-  "17 Herbal Ingredients",
-  "No Added Preservatives",
-  "100% Herbal",
-  "Ayurvedic Product",
-];
-
 const FAQS = [
   {
     q: "What is KadhaPlus Instant Herbal Kadha?",
@@ -114,64 +106,67 @@ export default function ProductPage() {
   return (
     <>
       {/* ============================ HERO: gallery + buy ===================== */}
-      <section className="section pt-10 sm:pt-14">
+      <section className="bg-cream-50 pb-16 pt-7 sm:pb-24 lg:pt-11">
         <div className="container-px">
-          <nav className="mb-6 text-sm text-ink-muted">
-            <Link href="/" className="hover:text-herbal-700">
+          <nav className="mb-7 text-[0.7rem] font-medium uppercase tracking-[0.18em] text-ink-muted">
+            <Link href="/" className="transition-colors hover:text-herbal-700">
               Home
             </Link>
-            <span className="mx-2">/</span>
+            <span className="mx-2 text-ink-muted/50">/</span>
             <span className="text-herbal-800">Our Product</span>
           </nav>
 
-          <div className="grid gap-10 lg:grid-cols-2 lg:gap-14">
-            <Reveal>
+          <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
+            <Reveal className="lg:col-span-7">
               <ProductGallery images={GALLERY} />
             </Reveal>
 
-            <Reveal delay={0.08}>
+            <Reveal delay={0.08} className="lg:col-span-5 lg:pt-4">
               <div>
-                <span className="eyebrow mb-4">
-                  <Leaf className="h-3.5 w-3.5" />
-                  {site.product.category}
-                </span>
-                <h1 className="h-display text-3xl sm:text-4xl lg:text-[2.75rem]">
-                  KadhaPlus Instant Herbal Kadha
+                <p className="text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-navy">
+                  KadhaPlus · Instant Herbal Kadha
+                </p>
+                <h1 className="mt-4 font-serif text-[clamp(2.4rem,4.2vw,3.4rem)] font-semibold leading-[1.04] text-herbal-900">
+                  Wellness, Made Simple.
                 </h1>
-                <p className="mt-3 max-w-lg leading-relaxed text-ink-soft">
-                  A traditional herbal blend of 17 powerful herbs, crafted to
-                  support your daily immunity and wellness — now in a convenient,
-                  single-serve sachet. Ready in a cup in under a minute.
+                <span className="mt-5 block h-px w-14 bg-brass-400" />
+                <p className="mt-5 max-w-md text-[1.02rem] leading-relaxed text-ink-soft">
+                  17 carefully selected herbs, thoughtfully blended into a
+                  convenient daily kadha — a calm, warming ritual for everyday
+                  immunity and wellness.
                 </p>
 
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {LABEL_BADGES.map((b) => (
-                    <span
-                      key={b}
-                      className="inline-flex items-center gap-1.5 rounded-full border border-herbal-100 bg-herbal-50 px-3 py-1 text-xs font-medium text-herbal-700"
-                    >
-                      <Check className="h-3.5 w-3.5" />
-                      {b}
-                    </span>
-                  ))}
+                <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2">
+                  {["17 Herbs", "No Added Preservatives", "100% Herbal"].map(
+                    (t) => (
+                      <span
+                        key={t}
+                        className="flex items-center gap-1.5 text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-herbal-800"
+                      >
+                        <Leaf className="h-3.5 w-3.5 text-leaf-600" />
+                        {t}
+                      </span>
+                    ),
+                  )}
                 </div>
 
-                <div className="mt-7">
+                <div className="mt-8">
                   <BuyBox variants={variants} />
                 </div>
 
-                <ul className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
-                  {BENEFITS.map((b) => (
-                    <li
-                      key={b.title}
-                      className="flex items-center gap-2.5 text-sm text-ink-soft"
-                    >
-                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-leaf-100 text-herbal-700">
-                        <b.icon className="h-4 w-4" />
-                      </span>
-                      {b.title}
-                    </li>
-                  ))}
+                <ul className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-black/[0.08] pt-5 text-xs text-ink-muted">
+                  <li className="flex items-center gap-2">
+                    <Truck className="h-4 w-4 text-herbal-600" />
+                    Free delivery over ₹499
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <ShieldCheck className="h-4 w-4 text-herbal-600" />
+                    Ayurvedic product
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Leaf className="h-4 w-4 text-herbal-600" />
+                    No preservatives
+                  </li>
                 </ul>
               </div>
             </Reveal>

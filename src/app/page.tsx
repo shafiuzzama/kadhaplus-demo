@@ -87,29 +87,23 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════ PRODUCT SHOWCASE ═══════════ */}
-      <section
-        id="product"
-        className="relative overflow-hidden bg-gradient-to-b from-mint-100 to-cream-50 py-16 sm:py-24"
-      >
-        <Sprig className="pointer-events-none absolute -left-10 top-10 h-48 w-48 text-herbal-900/5" />
-        <Sprig className="pointer-events-none absolute -right-12 bottom-6 h-56 w-56 rotate-180 text-herbal-900/5" />
-        <div className="container-px relative grid items-center gap-12 lg:grid-cols-2">
-          <Reveal className="relative">
-            <div className="absolute inset-6 -z-10 rounded-[2.5rem] bg-leaf-100/50 blur-2xl" />
-            <div className="group relative mx-auto aspect-square w-full max-w-lg overflow-hidden rounded-[2.5rem] bg-white shadow-soft ring-1 ring-herbal-100">
+      <section id="product" className="bg-cream-50 py-16 sm:py-24">
+        <div className="container-px grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          <Reveal>
+            <div className="group relative mx-auto aspect-square w-full max-w-lg overflow-hidden rounded-2xl bg-white ring-1 ring-black/[0.06] shadow-[0_34px_70px_-38px_rgba(20,45,30,0.4)]">
               <Image
                 src={`${IMG}/pack-box-open.webp`}
                 alt="KadhaPlus combo pack — open box with all five 4 g sachets"
                 fill
                 priority
                 sizes="(min-width:1024px) 512px, 100vw"
-                className="object-contain p-6 transition-transform duration-700 group-hover:scale-[1.04]"
+                className="object-contain p-7 transition-transform duration-700 group-hover:scale-[1.03]"
               />
-              <span className="absolute left-5 top-5 inline-flex items-center gap-1.5 rounded-full bg-herbal-600 px-3 py-1.5 text-xs font-semibold text-white shadow-sm">
-                <Leaf className="h-3.5 w-3.5" /> Bestseller · Combo Pack
+              <span className="absolute left-5 top-5 inline-flex items-center gap-1.5 rounded-full bg-herbal-800 px-3 py-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.1em] text-white">
+                Bestseller · Combo Pack
               </span>
               {/* single-sachet visual */}
-              <div className="absolute bottom-4 right-4 w-24 rounded-2xl border border-herbal-100 bg-white/95 p-2 shadow-soft backdrop-blur sm:w-28">
+              <div className="absolute bottom-4 right-4 w-24 rounded-xl bg-white/95 p-2 ring-1 ring-black/[0.06] backdrop-blur sm:w-28">
                 <div className="relative aspect-[3/4]">
                   <Image
                     src={`${IMG}/stick-front.webp`}
@@ -127,27 +121,30 @@ export default function HomePage() {
           </Reveal>
 
           <div>
-            <span className="eyebrow mb-4">
-              <Leaf className="h-3.5 w-3.5" />
+            <p className="text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-navy">
               Meet the Product
-            </span>
-            <h2 className="font-display text-[clamp(2rem,4.5vw,3.25rem)] leading-[0.95] tracking-wide text-herbal-900">
-              The ritual, <span className="text-leaf-500">in a sachet</span>
+            </p>
+            <h2 className="mt-4 font-serif text-[clamp(2.2rem,4vw,3.1rem)] font-semibold leading-[1.05] text-herbal-900">
+              The ritual, in a sachet.
             </h2>
-            <p className="mt-4 max-w-lg leading-relaxed text-ink-soft">
+            <span className="mt-5 block h-px w-14 bg-brass-400" />
+            <p className="mt-5 max-w-lg leading-relaxed text-ink-soft">
               {site.product.name} — a traditional blend of 17 powerful herbs,
               crafted for your daily immunity and wellness. Try a single 4&nbsp;g
               sachet, or save with the 5-sachet combo pack.
             </p>
-            <div className="mt-5 flex flex-wrap gap-2">
+            <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2">
               {CLAIMS.slice(0, 3).map((c) => (
-                <span key={c.label} className="chip">
-                  <c.icon className="h-3.5 w-3.5 text-herbal-600" />
+                <span
+                  key={c.label}
+                  className="flex items-center gap-1.5 text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-herbal-800"
+                >
+                  <c.icon className="h-3.5 w-3.5 text-leaf-600" />
                   {c.label}
                 </span>
               ))}
             </div>
-            <div className="mt-7">
+            <div className="mt-8">
               <BuyBox variants={variants} />
             </div>
           </div>
