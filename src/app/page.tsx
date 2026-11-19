@@ -9,7 +9,7 @@ import {
   Sparkles,
   Ban,
   Droplets,
-  FlaskConical,
+  Wind,
   CupSoda,
   PackageCheck,
 } from "lucide-react";
@@ -23,44 +23,30 @@ import BuyBox, { type BuyVariant } from "@/components/store/BuyBox";
 import { Sprig } from "@/components/product/PackArt";
 import KadhaHeroBanner from "@/components/KadhaHeroBanner";
 
-/* ── Real product photography ──────────────────────────────────────────── */
+/* ── Final product packaging (user-supplied) ───────────────────────────── */
 const IMG = "/images/kadhaplus";
 
-// The six product / lifestyle / infographic images.
-const PHOTO_PAIR = [
-  { src: `${IMG}/box-and-sachet.png`, label: "The Pack", note: "Box + single sachet", span: true },
-  { src: `${IMG}/lifestyle-model.png`, label: "Everyday Wellness", note: "A daily respiratory ritual", span: false },
-];
-const INFO_QUARTET = [
-  { src: `${IMG}/ingredients-17-herbs.png`, caption: "17 Traditional Herbs" },
-  { src: `${IMG}/how-to-prepare.png`, caption: "Ready in Minutes" },
-  { src: `${IMG}/sachet-features.png`, caption: "A Clean Label" },
-  { src: `${IMG}/box-back-details.png`, caption: "Honest, On the Pack" },
-];
-
-// The four sachet images (user-specified roles).
-const SACHETS = [
-  { src: `${IMG}/sachet-front.png`, label: "Front View", fit: "contain" },
-  { src: `${IMG}/sachet-back.png`, label: "Back Packaging", fit: "contain" },
-  { src: `${IMG}/sachet-with-cup.png`, label: "With Prepared Kadha", fit: "cover" },
-  { src: `${IMG}/sachets-multiple.png`, label: "Multiple Sachets", fit: "cover" },
-];
-
-const GALLERY = [
-  `${IMG}/lifestyle-model.png`,
-  `${IMG}/sachet-with-cup.png`,
-  `${IMG}/box-and-sachet.png`,
-  `${IMG}/sachets-multiple.png`,
-  `${IMG}/sachet-front.png`,
-  `${IMG}/sachet-back.png`,
+// The four supplied packaging photographs, for the "Packaging" gallery.
+const PACK_SHOTS = [
+  { src: `${IMG}/pack-box-open.webp`, label: "The Combo Box", note: "Open box · 5 sachets", span: true, aspect: "aspect-[16/10]" },
+  { src: `${IMG}/pack-box-closed.webp`, label: "Pack of 5", note: "₹100 · 20 g total", span: false, aspect: "aspect-[16/10]" },
+  { src: `${IMG}/stick-front.webp`, label: "Single Sachet — Front", note: "4 g · ₹20", span: false, aspect: "aspect-[3/4]" },
+  { src: `${IMG}/stick-back.webp`, label: "Single Sachet — Back", note: "17 herbs, on the pack", span: false, aspect: "aspect-[3/4]" },
 ];
 
 const CLAIMS = [
-  { icon: Leaf, label: "17 Powerful Herbs" },
-  { icon: Ban, label: "No Added Sugar" },
-  { icon: FlaskConical, label: "No Preservatives" },
-  { icon: Droplets, label: "No Artificial Colours" },
-  { icon: Sparkles, label: "1000+ ORAC Value" },
+  { icon: Leaf, label: "17 Herbal Ingredients" },
+  { icon: Ban, label: "No Added Preservatives" },
+  { icon: Sparkles, label: "100% Herbal" },
+  { icon: ShieldCheck, label: "Builds Natural Immunity" },
+  { icon: PackageCheck, label: "Ayurvedic Product" },
+];
+
+// Benefits printed on the pack (used in the dark band).
+const PACK_BENEFITS = [
+  { icon: Wind, title: "Throat & Respiratory Health", desc: "Warming herbs traditionally taken to support the throat and easy breathing." },
+  { icon: Droplets, title: "Cough & Cold Comfort", desc: "A soothing herbal kadha for seasonal cough-and-cold days." },
+  { icon: ShieldCheck, title: "Natural Immunity", desc: "A daily ritual of 17 herbs to support your body's defences." },
 ];
 
 const featureIcons = [Sparkles, PackageCheck, CupSoda, Leaf];
@@ -112,16 +98,31 @@ export default function HomePage() {
             <div className="absolute inset-6 -z-10 rounded-[2.5rem] bg-leaf-100/50 blur-2xl" />
             <div className="group relative mx-auto aspect-square w-full max-w-lg overflow-hidden rounded-[2.5rem] bg-white shadow-soft ring-1 ring-herbal-100">
               <Image
-                src={`${IMG}/sachet-with-cup.png`}
-                alt="KadhaPlus sachet beside a freshly prepared cup of kadha"
+                src={`${IMG}/pack-box-open.webp`}
+                alt="KadhaPlus combo pack — open box with all five 4 g sachets"
                 fill
                 priority
                 sizes="(min-width:1024px) 512px, 100vw"
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                className="object-contain p-6 transition-transform duration-700 group-hover:scale-[1.04]"
               />
-              <span className="absolute left-5 top-5 inline-flex items-center gap-1.5 rounded-full bg-white/90 px-3 py-1.5 text-xs font-semibold text-herbal-700 shadow-sm backdrop-blur">
-                <Leaf className="h-3.5 w-3.5" /> Bestseller
+              <span className="absolute left-5 top-5 inline-flex items-center gap-1.5 rounded-full bg-herbal-600 px-3 py-1.5 text-xs font-semibold text-white shadow-sm">
+                <Leaf className="h-3.5 w-3.5" /> Bestseller · Combo Pack
               </span>
+              {/* single-sachet visual */}
+              <div className="absolute bottom-4 right-4 w-24 rounded-2xl border border-herbal-100 bg-white/95 p-2 shadow-soft backdrop-blur sm:w-28">
+                <div className="relative aspect-[3/4]">
+                  <Image
+                    src={`${IMG}/stick-front.webp`}
+                    alt="KadhaPlus single 4 g sachet"
+                    fill
+                    sizes="112px"
+                    className="object-contain"
+                  />
+                </div>
+                <p className="pt-1 text-center text-[11px] font-semibold text-herbal-800">
+                  Single · ₹20
+                </p>
+              </div>
             </div>
           </Reveal>
 
@@ -185,70 +186,84 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══════════ SECTION A · THE EDIT (6 images) ═══════════ */}
+      {/* ═══════════ SECTION A · THE PACKAGING ═══════════ */}
       <section className="section bg-white">
         <div className="container-px">
           <SectionHeading
-            eyebrow="The KadhaPlus Edit"
-            title="Everything About KadhaPlus, In One Look"
-            subtitle="From the pack in your hand to the 17 herbs inside it — here's the whole story in pictures."
+            eyebrow="The Packaging"
+            title="Premium Packaging, Inside & Out"
+            subtitle="From the five-sachet combo box to the single-serve stick — the real KadhaPlus pack, photographed up close."
           />
 
-          {/* two feature photos */}
-          <div className="mt-14 grid gap-5 lg:grid-cols-3">
-            {PHOTO_PAIR.map((p, i) => (
-              <Reveal
-                key={p.src}
-                delay={i * 0.08}
-                className={p.span ? "lg:col-span-2" : ""}
-              >
-                <figure className="group relative h-64 overflow-hidden rounded-3xl shadow-card ring-1 ring-herbal-100 sm:h-80 lg:h-[380px]">
-                  <Image
-                    src={p.src}
-                    alt={p.note}
-                    fill
-                    sizes={p.span ? "(min-width:1024px) 66vw, 100vw" : "(min-width:1024px) 33vw, 100vw"}
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-herbal-950/75 via-herbal-950/5 to-transparent" />
-                  <figcaption className="absolute inset-x-0 bottom-0 p-6">
-                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brass-300">
-                      {p.label}
-                    </p>
-                    <p className="mt-1 font-display text-2xl tracking-wide text-white">
-                      {p.note}
-                    </p>
+          {/* the two boxes */}
+          <div className="mt-14 grid gap-5 sm:grid-cols-2">
+            {PACK_SHOTS.slice(0, 2).map((p, i) => (
+              <Reveal key={p.src} delay={i * 0.08}>
+                <figure className="group h-full overflow-hidden rounded-3xl border border-herbal-100 bg-white shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-soft">
+                  <div className={`relative overflow-hidden ${p.aspect}`}>
+                    <Image
+                      src={p.src}
+                      alt={p.label}
+                      fill
+                      sizes="(min-width:640px) 48vw, 100vw"
+                      className="object-contain p-5 transition-transform duration-700 group-hover:scale-[1.05]"
+                    />
+                  </div>
+                  <figcaption className="flex items-center justify-between gap-2 border-t border-herbal-100 px-5 py-4">
+                    <span className="font-semibold text-herbal-900">{p.label}</span>
+                    <span className="text-xs text-ink-muted">{p.note}</span>
                   </figcaption>
                 </figure>
               </Reveal>
             ))}
           </div>
 
-          {/* four infographic cards */}
-          <div className="mt-5 grid grid-cols-2 gap-5 lg:grid-cols-4">
-            {INFO_QUARTET.map((p, i) => (
-              <Reveal key={p.src} delay={i * 0.06}>
-                <figure className="group h-full overflow-hidden rounded-3xl border border-herbal-100 bg-cream-50 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-soft">
-                  <div className="relative aspect-square overflow-hidden">
+          {/* the single sachet + shop card */}
+          <div className="mt-5 grid grid-cols-2 gap-5 sm:grid-cols-4">
+            {PACK_SHOTS.slice(2).map((p, i) => (
+              <Reveal key={p.src} delay={i * 0.07}>
+                <figure className="group h-full overflow-hidden rounded-3xl border border-herbal-100 bg-white shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-soft">
+                  <div className={`relative overflow-hidden ${p.aspect}`}>
                     <Image
                       src={p.src}
-                      alt={p.caption}
+                      alt={p.label}
                       fill
-                      sizes="(min-width:1024px) 25vw, 50vw"
-                      className="object-contain p-3 transition-transform duration-700 group-hover:scale-[1.07]"
+                      sizes="(min-width:640px) 24vw, 50vw"
+                      className="object-contain p-4 transition-transform duration-700 group-hover:scale-[1.06]"
                     />
                   </div>
-                  <figcaption className="border-t border-herbal-100 bg-white px-4 py-3.5 text-center text-sm font-semibold text-herbal-900">
-                    {p.caption}
+                  <figcaption className="flex items-center justify-between gap-2 border-t border-herbal-100 px-4 py-3.5">
+                    <span className="text-sm font-semibold text-herbal-900">{p.label}</span>
+                    <span className="hidden text-xs text-ink-muted sm:inline">{p.note}</span>
                   </figcaption>
                 </figure>
               </Reveal>
             ))}
+            <Reveal delay={0.21} className="col-span-2">
+              <Link
+                href="/product"
+                className="group flex h-full flex-col justify-between rounded-3xl bg-gradient-to-br from-herbal-600 to-herbal-800 p-6 text-white shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-soft"
+              >
+                <Sprig className="h-10 w-10 text-brass-300/60" />
+                <div className="mt-6">
+                  <p className="font-display text-2xl leading-tight tracking-wide">
+                    Shop the pack
+                  </p>
+                  <p className="mt-1 text-sm text-mint-100/80">
+                    Single ₹20 · Combo ₹100
+                  </p>
+                  <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brass-200">
+                    Buy now
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </span>
+                </div>
+              </Link>
+            </Reveal>
           </div>
         </div>
       </section>
 
-      {/* ═══════════ SECTION B · CLOSER LOOK (4 sachet images) ═══════════ */}
+      {/* ═══════════ SECTION B · BENEFITS (dark band) ═══════════ */}
       <section className="relative overflow-hidden bg-herbal-950 py-16 text-cream-50 sm:py-24">
         <Sprig className="pointer-events-none absolute -left-12 top-10 h-64 w-64 text-brass-400/10" />
         <Sprig className="pointer-events-none absolute -right-12 bottom-0 h-64 w-64 rotate-180 text-brass-400/10" />
@@ -256,41 +271,30 @@ export default function HomePage() {
           <Reveal className="mx-auto max-w-2xl text-center">
             <span className="eyebrow-light mb-4">
               <Leaf className="h-3.5 w-3.5" />
-              Up Close
+              Why a Cup a Day
             </span>
             <h2 className="font-display text-[clamp(2rem,4.5vw,3.25rem)] leading-[0.95] tracking-wide text-white">
-              A Closer Look at <span className="text-brass-300">Every Sachet</span>
+              Made for <span className="text-brass-300">Everyday Comfort</span>
             </h2>
             <p className="mt-4 leading-relaxed text-cream-100/75">
-              Front, back, freshly brewed and by the handful — the single-serve
-              sachet designed to fit your day.
+              The benefits printed on the pack — simple, honest and wellness-first.
             </p>
           </Reveal>
 
-          <div className="mx-auto mt-14 grid max-w-4xl gap-5 sm:grid-cols-2">
-            {SACHETS.map((s, i) => (
-              <Reveal key={s.src} delay={i * 0.07}>
-                <figure className="group relative overflow-hidden rounded-3xl bg-white shadow-glow ring-1 ring-white/10">
-                  <div className="relative aspect-[4/3] overflow-hidden">
-                    <Image
-                      src={s.src}
-                      alt={s.label}
-                      fill
-                      sizes="(min-width:640px) 45vw, 100vw"
-                      className={`transition-transform duration-700 group-hover:scale-105 ${
-                        s.fit === "contain"
-                          ? "object-contain p-4"
-                          : "object-cover"
-                      }`}
-                    />
-                  </div>
-                  <figcaption className="absolute left-4 top-4">
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-herbal-950/80 px-3 py-1.5 text-xs font-semibold text-cream-50 backdrop-blur">
-                      <span className="h-1.5 w-1.5 rounded-full bg-brass-300" />
-                      {s.label}
-                    </span>
-                  </figcaption>
-                </figure>
+          <div className="mx-auto mt-14 grid max-w-5xl gap-6 md:grid-cols-3">
+            {PACK_BENEFITS.map((b, i) => (
+              <Reveal key={b.title} delay={i * 0.08}>
+                <div className="h-full rounded-3xl border border-white/10 bg-white/[0.04] p-7 backdrop-blur transition-colors duration-300 hover:bg-white/[0.07]">
+                  <span className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-leaf-400 to-herbal-600 text-white">
+                    <b.icon className="h-7 w-7" />
+                  </span>
+                  <h3 className="mt-5 font-display text-xl tracking-wide text-white">
+                    {b.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-cream-100/70">
+                    {b.desc}
+                  </p>
+                </div>
               </Reveal>
             ))}
           </div>
@@ -347,7 +351,7 @@ export default function HomePage() {
               Powered by <span className="text-leaf-500">17 Herbs</span>
             </h2>
             <p className="mt-4 max-w-lg leading-relaxed text-ink-soft">
-              Tulasi, Shunthi, Dalchini, Maricha, Haridra and more — the warming
+              Tulsi, Adrak, Mulethi, Giloy, Ashwagandha and more — the 17 warming
               herbs long loved in traditional Indian kadha, exactly as printed on
               the pack.
             </p>
@@ -434,38 +438,6 @@ export default function HomePage() {
             </Link>
             .
           </Reveal>
-        </div>
-      </section>
-
-      {/* ═══════════ COMMUNITY GALLERY ═══════════ */}
-      <section className="section bg-white">
-        <div className="container-px">
-          <SectionHeading
-            eyebrow="#KadhaPlusRitual"
-            title="Join the KadhaPlus Ritual"
-            subtitle="A warm cup, a calmer day. Share your moment and be part of the KadhaPlus community."
-          />
-          <div className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-            {GALLERY.map((src, i) => (
-              <Reveal key={src} delay={i * 0.05}>
-                <Link
-                  href="/product"
-                  className="group relative block aspect-square overflow-hidden rounded-2xl ring-1 ring-herbal-100"
-                >
-                  <Image
-                    src={src}
-                    alt="KadhaPlus moment"
-                    fill
-                    sizes="(min-width:1024px) 16vw, 33vw"
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center bg-herbal-950/0 transition-colors duration-300 group-hover:bg-herbal-950/40">
-                    <Leaf className="h-6 w-6 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                  </div>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
         </div>
       </section>
 

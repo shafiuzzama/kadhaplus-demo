@@ -6,17 +6,14 @@ import {
   Check,
   ShieldCheck,
   Droplets,
-  Flame,
   Wind,
   Package,
   Boxes,
   Truck,
   RotateCcw,
-  Sparkles,
 } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import SectionHeading from "@/components/ui/SectionHeading";
-import Placeholder from "@/components/ui/Placeholder";
 import ProductGallery, {
   type GalleryImage,
 } from "@/components/product/ProductGallery";
@@ -30,51 +27,54 @@ export const metadata: Metadata = {
     "KadhaPlus Instant Herbal Kadha — a traditional blend of 17 powerful herbs in a convenient sachet. Buy a single 4 g sachet (₹20) or the 5-sachet combo pack (₹100).",
 };
 
-/* All 10 supplied product photographs, in gallery order. */
+/* The four supplied final-packaging photographs, in gallery order. */
 const GALLERY: GalleryImage[] = [
-  { src: "/images/kadhaplus/box-and-sachet.png", alt: "KadhaPlus Instant Herbal Kadha box with a single sachet" },
-  { src: "/images/kadhaplus/sachet-with-cup.png", alt: "KadhaPlus sachet beside a freshly prepared cup of kadha" },
-  { src: "/images/kadhaplus/sachets-multiple.png", alt: "Several KadhaPlus sachets presented in a wooden bowl" },
-  { src: "/images/kadhaplus/sachet-front.png", alt: "Front of the KadhaPlus single sachet" },
-  { src: "/images/kadhaplus/sachet-back.png", alt: "Back of the KadhaPlus sachet showing ingredients and how to prepare" },
-  { src: "/images/kadhaplus/lifestyle-model.png", alt: "Daily care for respiratory wellness — KadhaPlus lifestyle" },
-  { src: "/images/kadhaplus/ingredients-17-herbs.png", alt: "Powered by 17 traditional herbs — KadhaPlus ingredients" },
-  { src: "/images/kadhaplus/how-to-prepare.png", alt: "How to make your KadhaPlus kadha in three steps" },
-  { src: "/images/kadhaplus/sachet-features.png", alt: "KadhaPlus sachet features — 100% herbal blend, no preservatives" },
-  { src: "/images/kadhaplus/box-back-details.png", alt: "KadhaPlus box back panel with ingredients and pack details" },
+  { src: "/images/kadhaplus/pack-box-open.webp", alt: "KadhaPlus combo pack — open box with all five 4 g sachets" },
+  { src: "/images/kadhaplus/pack-box-closed.webp", alt: "KadhaPlus combo pack — box of 5 sachets (₹100)" },
+  { src: "/images/kadhaplus/stick-front.webp", alt: "KadhaPlus single sachet (4 g, ₹20) — front" },
+  { src: "/images/kadhaplus/stick-back.webp", alt: "KadhaPlus single sachet — back panel with 17 herbs, how to use and benefits" },
 ];
 
 /* Benefit claims as printed on the pack. */
 const BENEFITS = [
-  { icon: ShieldCheck, title: "Supports Immunity", desc: "A daily herbal ritual to support your body's natural defences." },
-  { icon: Droplets, title: "Soothes Throat", desc: "Warm, comforting kadha that helps soothe an irritated throat." },
-  { icon: Flame, title: "Relieves Cough & Cold", desc: "Traditional warming herbs for seasonal cough and cold comfort." },
-  { icon: Wind, title: "Respiratory Comfort", desc: "Promotes easy, comfortable breathing through the day." },
+  { icon: Wind, title: "Supports Throat & Respiratory Health", desc: "Warming herbs traditionally taken to support the throat and easy, comfortable breathing." },
+  { icon: Droplets, title: "Helps Relieve Cough & Cold", desc: "A soothing herbal kadha for seasonal cough-and-cold comfort." },
+  { icon: ShieldCheck, title: "Builds Natural Immunity", desc: "A daily ritual of 17 herbs to support your body's natural defences." },
+  { icon: Leaf, title: "100% Herbal, No Preservatives", desc: "A clean herbal blend with no added preservatives, exactly as stated on the pack." },
 ];
 
-/* 8 named herbs from the pack; 9 more make up the 17-herb blend. */
+/* All 17 herbs, exactly as printed on the pack (back panel). */
 const HERBS = [
-  { name: "Tulasi", sub: "Holy Basil" },
-  { name: "Shunthi", sub: "Dry Ginger" },
-  { name: "Dalchini", sub: "Cinnamon" },
-  { name: "Maricha", sub: "Black Pepper" },
-  { name: "Haridra", sub: "Turmeric" },
+  { name: "Tulsi", sub: "Holy Basil" },
+  { name: "Adrak", sub: "Ginger" },
+  { name: "Mulethi", sub: "Licorice" },
+  { name: "Kali Mirch", sub: "Black Pepper" },
   { name: "Pippali", sub: "Long Pepper" },
-  { name: "Amalaki", sub: "Amla" },
-  { name: "Yashti", sub: "Licorice" },
+  { name: "Dalchini", sub: "Cinnamon" },
+  { name: "Laung", sub: "Clove" },
+  { name: "Elaichi", sub: "Cardamom" },
+  { name: "Giloy", sub: "Guduchi" },
+  { name: "Ashwagandha", sub: "Winter Cherry" },
+  { name: "Haldi", sub: "Turmeric" },
+  { name: "Saunth", sub: "Dry Ginger" },
+  { name: "Ajwain", sub: "Carom" },
+  { name: "Punarnava", sub: "Hogweed" },
+  { name: "Vasaka", sub: "Malabar Nut" },
+  { name: "Tejpatta", sub: "Bay Leaf" },
+  { name: "Shankhpushpi", sub: "Herb of grace" },
 ];
 
 const STEPS = [
-  { n: 1, title: "Empty 1 sachet", desc: "Tip one 4 g sachet of KadhaPlus into your cup." },
-  { n: 2, title: "Add hot water", desc: "Pour in 150–200 ml of hot water." },
-  { n: 3, title: "Stir & enjoy", desc: "Stir well and enjoy your kadha warm." },
+  { n: 1, title: "Mix 1 sachet", desc: "Empty one 4 g sachet of KadhaPlus into your cup." },
+  { n: 2, title: "Add hot water", desc: "Pour in about 150 ml of hot water and stir well." },
+  { n: 3, title: "Drink warm", desc: "Stir until dissolved and enjoy your kadha warm." },
 ];
 
 const LABEL_BADGES = [
-  "17 Powerful Herbs",
-  "No Added Sugar",
-  "1000+ ORAC Value",
-  "High Antioxidant",
+  "17 Herbal Ingredients",
+  "No Added Preservatives",
+  "100% Herbal",
+  "Ayurvedic Product",
 ];
 
 const FAQS = [
@@ -84,19 +84,19 @@ const FAQS = [
   },
   {
     q: "How many herbs does it contain?",
-    a: "The blend is made with 17 traditional herbs, including Tulasi (Holy Basil), Shunthi (Dry Ginger), Dalchini (Cinnamon), Maricha (Black Pepper), Haridra (Turmeric), Pippali (Long Pepper), Amalaki (Amla), Yashti (Licorice) and 9 more selected herbs — exactly as printed on the pack.",
+    a: "The blend is made with 17 traditional herbs — Tulsi, Adrak, Mulethi, Kali Mirch, Pippali, Dalchini, Laung, Elaichi, Giloy, Ashwagandha, Haldi, Saunth, Ajwain, Punarnava, Vasaka, Tejpatta and Shankhpushpi — exactly as printed on the pack.",
   },
   {
     q: "How do I prepare it?",
-    a: "Empty one 4 g sachet into a cup, add 150–200 ml of hot water, stir well and enjoy it warm.",
+    a: "Empty one 4 g sachet into a cup, add about 150 ml of hot water, stir well and drink it warm.",
   },
   {
     q: "What's the difference between the single sachet and the combo pack?",
     a: "They are the same product in different quantities. The single sachet is 4 g (₹20). The combo pack has 5 sachets (5 × 4 g = 20 g) for ₹100.",
   },
   {
-    q: "Does it contain added sugar, preservatives or artificial colours?",
-    a: "As stated on the pack, KadhaPlus has no added sugar, no preservatives, no added colours and no artificial flavours.",
+    q: "Does it contain preservatives?",
+    a: "As stated on the pack, KadhaPlus is 100% herbal with no added preservatives. It is an Ayurvedic product, not a medicine.",
   },
 ];
 
@@ -231,17 +231,17 @@ export default function ProductPage() {
           <SectionHeading
             eyebrow="Ingredients"
             title="Powered by 17 traditional herbs"
-            subtitle="Eight of the key herbs are named on the pack; nine more selected herbs complete the 17-herb blend."
+            subtitle="Every herb in the blend, exactly as listed on the pack — nothing added, nothing hidden."
           />
-          <div className="mt-12 grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+          <div className="mt-12 grid items-center gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
             <Reveal>
-              <div className="relative mx-auto aspect-square w-full max-w-md overflow-hidden rounded-3xl bg-cream-50 shadow-soft ring-1 ring-herbal-100">
+              <div className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-3xl bg-white shadow-soft ring-1 ring-herbal-100">
                 <Image
-                  src="/images/kadhaplus/ingredients-17-herbs.png"
-                  alt="KadhaPlus is powered by 17 traditional herbs"
+                  src="/images/kadhaplus/stick-back.webp"
+                  alt="KadhaPlus sachet back panel listing all 17 herbs"
                   fill
-                  sizes="(min-width: 1024px) 420px, 100vw"
-                  className="object-contain p-2"
+                  sizes="(min-width: 1024px) 380px, 100vw"
+                  className="object-contain p-3"
                 />
               </div>
             </Reveal>
@@ -256,19 +256,10 @@ export default function ProductPage() {
                     <p className="text-xs text-ink-muted">{h.sub}</p>
                   </div>
                 ))}
-                <div className="flex flex-col items-center justify-center rounded-2xl bg-herbal-900 p-4 text-center text-mint-100">
-                  <Sparkles className="h-5 w-5" />
-                  <p className="mt-1 text-sm font-semibold text-white">
-                    & 9 more
-                  </p>
-                  <p className="text-xs text-mint-100/70">potent herbs</p>
-                </div>
               </div>
               <p className="mt-5 text-xs text-ink-muted">
-                Key herbs printed on the pack: Tulasi, Shunthi, Dalchini,
-                Maricha, Haridra, Pippali, Amalaki, Yashti and other selected
-                herbs (17 herbs total). We do not add to or alter the
-                manufacturer&rsquo;s stated formulation.
+                All 17 herbs are listed on the pack back panel. We do not add to
+                or alter the manufacturer&rsquo;s stated formulation.
               </p>
             </Reveal>
           </div>
@@ -303,13 +294,13 @@ export default function ProductPage() {
               </p>
             </Reveal>
             <Reveal delay={0.08}>
-              <div className="relative mx-auto aspect-square w-full max-w-md overflow-hidden rounded-3xl bg-cream-50 shadow-soft ring-1 ring-herbal-100">
+              <div className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-3xl bg-white shadow-soft ring-1 ring-herbal-100">
                 <Image
-                  src="/images/kadhaplus/how-to-prepare.png"
-                  alt="How to make your KadhaPlus kadha in three steps"
+                  src="/images/kadhaplus/stick-front.webp"
+                  alt="KadhaPlus single 4 g sachet, front"
                   fill
-                  sizes="(min-width: 1024px) 420px, 100vw"
-                  className="object-contain p-2"
+                  sizes="(min-width: 1024px) 380px, 100vw"
+                  className="object-contain p-3"
                 />
               </div>
             </Reveal>
@@ -334,7 +325,8 @@ export default function ProductPage() {
                     Single sachet — ₹20
                   </p>
                   <p className="text-sm text-ink-soft">
-                    One single-serve sachet. Net weight 4 g. No added sugar.
+                    One single-serve sachet. Net weight 4 g. 100% herbal, no
+                    added preservatives.
                   </p>
                 </div>
               </div>
@@ -368,24 +360,37 @@ export default function ProductPage() {
               eyebrow="Verified Information"
               title="Confirmed from the pack"
             />
-            <div className="relative mt-6 aspect-[5/4] w-full overflow-hidden rounded-3xl bg-cream-50 shadow-soft ring-1 ring-herbal-100">
+            <div className="relative mt-6 aspect-[4/5] w-full max-w-sm overflow-hidden rounded-3xl bg-white shadow-soft ring-1 ring-herbal-100">
               <Image
-                src="/images/kadhaplus/box-back-details.png"
-                alt="KadhaPlus box back panel with ingredients and pack details"
+                src="/images/kadhaplus/stick-back.webp"
+                alt="KadhaPlus sachet back panel with ingredients, directions and pack details"
                 fill
-                sizes="(min-width: 1024px) 520px, 100vw"
-                className="object-contain p-2"
+                sizes="(min-width: 1024px) 380px, 100vw"
+                className="object-contain p-3"
               />
             </div>
-            <div className="mt-5 space-y-3">
-              <Placeholder label="Batch number (printed on each pack)" />
-              <Placeholder label="Manufacturing & expiry date (printed on each pack)" />
-              <Placeholder label="Manufacturer & licence details (FSSAI / AYUSH as applicable)" />
+            <div className="mt-5 grid grid-cols-2 gap-3 text-sm">
+              {[
+                "Net weight (4 g per sachet)",
+                "MRP, inclusive of taxes",
+                "Batch number",
+                "Mfg. & expiry dates",
+                "FSSAI licence number",
+                "Ayurvedic product · Not a medicine",
+              ].map((item) => (
+                <p
+                  key={item}
+                  className="flex items-start gap-2 rounded-xl bg-herbal-50 px-3 py-2.5 text-herbal-800"
+                >
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-herbal-600" />
+                  {item}
+                </p>
+              ))}
             </div>
             <p className="mt-4 text-xs text-ink-muted">
               We do not fabricate product data. Net weight, price, ingredients
-              and preparation above are taken directly from the manufacturer
-              packaging. Batch, dates and licence details are printed on each
+              and directions are taken directly from the manufacturer packaging
+              shown above. Batch, dates and licence numbers are printed on each
               individual pack. See our{" "}
               <Link href="/disclaimer" className="underline">
                 Disclaimer

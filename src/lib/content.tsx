@@ -54,17 +54,26 @@ export const prepareSteps = [
   },
 ];
 
-// Inspirational, traditionally-associated ingredients. Final, verified
-// ingredient list must come from approved product packaging.
+// The 17 herbs printed on the KadhaPlus pack back panel, with widely-known
+// English equivalents. This is the manufacturer's stated blend.
 export const traditionalIngredients = [
-  { name: "Tulsi", note: "Holy basil, a cornerstone of traditional kadha." },
-  { name: "Ginger", note: "A warming root long used in home preparations." },
-  { name: "Black Pepper", note: "A classic kadha spice." },
-  { name: "Cloves", note: "Aromatic and traditionally comforting." },
-  { name: "Cardamom", note: "For fragrance and warmth." },
-  { name: "Cinnamon", note: "A sweet, warming bark." },
+  { name: "Tulsi", note: "Holy basil — a cornerstone of traditional kadha." },
+  { name: "Adrak", note: "Ginger, a warming root long used in home preparations." },
   { name: "Mulethi", note: "Liquorice root, familiar in throat preparations." },
-  { name: "Star Anise", note: "A distinctive aromatic spice." },
+  { name: "Kali Mirch", note: "Black pepper, a classic kadha spice." },
+  { name: "Pippali", note: "Long pepper, a traditional Ayurvedic spice." },
+  { name: "Dalchini", note: "Cinnamon, a sweet, warming bark." },
+  { name: "Laung", note: "Clove, aromatic and traditionally comforting." },
+  { name: "Elaichi", note: "Cardamom, for fragrance and warmth." },
+  { name: "Giloy", note: "Guduchi, a herb valued in Ayurveda." },
+  { name: "Ashwagandha", note: "A well-known restorative Ayurvedic herb." },
+  { name: "Haldi", note: "Turmeric, the golden kitchen root." },
+  { name: "Saunth", note: "Dry ginger, warming and pungent." },
+  { name: "Ajwain", note: "Carom seeds, a familiar Indian spice." },
+  { name: "Punarnava", note: "A traditional Ayurvedic herb." },
+  { name: "Vasaka", note: "Malabar nut, long used in throat preparations." },
+  { name: "Tejpatta", note: "Indian bay leaf, gently aromatic." },
+  { name: "Shankhpushpi", note: "A classic calming Ayurvedic herb." },
 ];
 
 export const whyTrust = [
@@ -127,10 +136,10 @@ export const faqs: QA[] = [
     q: "What are the ingredients?",
     a: (
       <>
-        The complete, verified ingredient list is printed on the approved product
-        packaging. Our <Link href="/ingredients">Ingredients</Link> page shares
-        the traditional inspiration behind kadha, with a clearly marked
-        placeholder for the final verified list.
+        KadhaPlus is a blend of 17 herbs — Tulsi, Adrak, Mulethi, Kali Mirch,
+        Pippali, Dalchini, Laung, Elaichi, Giloy, Ashwagandha, Haldi, Saunth,
+        Ajwain, Punarnava, Vasaka, Tejpatta and Shankhpushpi — as listed on the
+        pack. See our <Link href="/ingredients">Ingredients</Link> page for more.
       </>
     ),
   },

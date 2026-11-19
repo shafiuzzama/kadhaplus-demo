@@ -27,16 +27,15 @@ export default function IngredientsPage() {
           <Reveal className="mx-auto mb-10 flex max-w-3xl items-start gap-3 rounded-2xl border border-leaf-200 bg-leaf-50/60 p-5 text-sm">
             <Info className="mt-0.5 h-5 w-5 shrink-0 text-leaf-600" />
             <p className="text-ink-soft">
-              The herbs shown below reflect the <strong>traditional inspiration</strong>{" "}
-              behind kadha and are shared for context only. They are not a
-              statement of the final recipe. Always refer to the ingredient list
-              on your pack.
+              The <strong>17 herbs</strong> shown below are the blend listed on
+              the KadhaPlus pack back panel. For allergen or suitability
+              questions, always refer to the information printed on your pack.
             </p>
           </Reveal>
 
           <SectionHeading
-            eyebrow="Traditional Inspiration"
-            title="Herbs & spices behind kadha"
+            eyebrow="The 17-Herb Blend"
+            title="The herbs in every sachet"
           />
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {traditionalIngredients.map((ing, i) => (
@@ -60,14 +59,22 @@ export default function IngredientsPage() {
         <div className="container-px mx-auto max-w-3xl">
           <SectionHeading
             eyebrow="Verified Product Information"
-            title="The official ingredient list"
-            subtitle="We never fabricate ingredients, quantities or nutritional information. The confirmed details below come only from manufacturer-approved sources."
+            title="Straight from the pack"
+            subtitle="We never fabricate ingredients, quantities or nutritional information. The confirmed details below come only from the manufacturer packaging."
           />
           <div className="mt-10 space-y-3">
-            <Placeholder label="Complete ingredient list" />
+            <div className="flex items-start gap-3 rounded-2xl border border-leaf-200 bg-leaf-50/60 p-5 text-sm text-ink-soft">
+              <Leaf className="mt-0.5 h-5 w-5 shrink-0 text-leaf-600" />
+              <p>
+                <strong className="text-herbal-900">17-herb blend</strong> — Tulsi,
+                Adrak, Mulethi, Kali Mirch, Pippali, Dalchini, Laung, Elaichi,
+                Giloy, Ashwagandha, Haldi, Saunth, Ajwain, Punarnava, Vasaka,
+                Tejpatta and Shankhpushpi. 100% herbal, with no added
+                preservatives.
+              </p>
+            </div>
             <Placeholder label="Allergen information" />
             <Placeholder label="Nutritional information (if applicable)" />
-            <Placeholder label="Added flavours / preservatives disclosure" />
           </div>
           <p className="mt-6 text-center text-sm text-ink-muted">
             Have a specific question about ingredients?{" "}
