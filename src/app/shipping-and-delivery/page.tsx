@@ -1,11 +1,12 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import LegalPage from "@/components/ui/LegalPage";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Shipping & Delivery Policy",
-  description: "How KadhaPlus orders are processed, shipped and delivered.",
-};
+  description: "How KadhaPlus orders are processed, shipped and delivered across India.",
+  path: "/shipping-and-delivery",
+});
 
 export default function ShippingPage() {
   return (

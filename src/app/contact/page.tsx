@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { Phone, Mail, MapPin, Building2 } from "lucide-react";
 import PageHeader from "@/components/ui/PageHeader";
 import Reveal from "@/components/ui/Reveal";
@@ -6,11 +6,12 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import ContactForm from "@/components/ContactForm";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Contact Us",
   description:
-    "Get in touch with the KadhaPlus team — call us, visit our Indiranagar, Bengaluru office, or send a business enquiry.",
-};
+    "Get in touch with the KadhaPlus team — call us, email support, or send a business enquiry about KadhaPlus Instant Herbal Kadha.",
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (

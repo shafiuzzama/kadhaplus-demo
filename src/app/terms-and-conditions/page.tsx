@@ -1,11 +1,12 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import LegalPage from "@/components/ui/LegalPage";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Terms & Conditions",
   description: "The terms governing your use of the KadhaPlus website.",
-};
+  path: "/terms-and-conditions",
+});
 
 export default function TermsPage() {
   return (

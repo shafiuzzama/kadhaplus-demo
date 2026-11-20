@@ -6,7 +6,9 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { StoreProvider } from "@/components/store/StoreProvider";
 import CartDrawer from "@/components/store/CartDrawer";
+import JsonLd from "@/components/seo/JsonLd";
 import { site } from "@/lib/site";
+import { organizationSchema, websiteSchema } from "@/lib/seo";
 
 const sans = Poppins({
   subsets: ["latin"],
@@ -45,6 +47,19 @@ export const metadata: Metadata = {
     "seasonal wellness",
   ],
   authors: [{ name: site.name }],
+  creator: site.name,
+  publisher: site.name,
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
     type: "website",
     title: `${site.name} | Herbal Wellness`,
@@ -52,11 +67,20 @@ export const metadata: Metadata = {
     siteName: site.name,
     url: site.url,
     locale: "en_IN",
+    images: [
+      {
+        url: "/images/kadhaplus/pack-box-closed.webp",
+        width: 1536,
+        height: 1024,
+        alt: "KadhaPlus Instant Herbal Kadha — pack of 5 sachets",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: `${site.name} | Herbal Wellness`,
     description: site.description,
+    images: ["/images/kadhaplus/pack-box-closed.webp"],
   },
   icons: {
     icon: "/icon",
@@ -76,10 +100,11 @@ export default function RootLayout({
 }) {
   return (
     <html
-      lang="en"
+      lang="en-IN"
       className={`${sans.variable} ${display.variable} ${serif.variable}`}
     >
       <body className="flex min-h-screen flex-col">
+        <JsonLd data={[organizationSchema(), websiteSchema()]} />
         <StoreProvider>
           <PromoBar />
           <Navbar />

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { Leaf, Info } from "lucide-react";
 import PageHeader from "@/components/ui/PageHeader";
@@ -7,11 +7,12 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import Placeholder from "@/components/ui/Placeholder";
 import { traditionalIngredients } from "@/lib/content";
 
-export const metadata: Metadata = {
-  title: "Ingredients",
+export const metadata = pageMetadata({
+  title: "Ingredients — The 17 Herbs in KadhaPlus Kadha",
   description:
-    "The traditional herbs and spices that inspire KadhaPlus. The complete verified ingredient list is printed on approved packaging.",
-};
+    "The 17 traditional herbs in KadhaPlus Instant Herbal Kadha, as listed on the pack — Tulsi, Adrak, Mulethi, Giloy, Ashwagandha and more. 100% herbal, no added preservatives.",
+  path: "/ingredients",
+});
 
 export default function IngredientsPage() {
   return (

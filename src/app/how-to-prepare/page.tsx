@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { AlertCircle, ArrowRight } from "lucide-react";
 import PageHeader from "@/components/ui/PageHeader";
@@ -7,11 +7,12 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import Placeholder from "@/components/ui/Placeholder";
 import { prepareSteps } from "@/lib/content";
 
-export const metadata: Metadata = {
-  title: "How to Prepare",
+export const metadata = pageMetadata({
+  title: "How to Prepare Instant Herbal Kadha",
   description:
-    "Prepare KadhaPlus in three simple steps. Always follow the exact instructions printed on your approved product packaging.",
-};
+    "Make KadhaPlus Instant Herbal Kadha in three simple steps — empty one 4 g sachet, add about 150 ml hot water, stir and enjoy warm. Always follow the pack.",
+  path: "/how-to-prepare",
+});
 
 export default function HowToPreparePage() {
   return (

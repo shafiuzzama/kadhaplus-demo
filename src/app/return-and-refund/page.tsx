@@ -1,11 +1,12 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import LegalPage from "@/components/ui/LegalPage";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Return & Refund Policy",
   description: "KadhaPlus policy on returns, replacements and refunds.",
-};
+  path: "/return-and-refund",
+});
 
 export default function ReturnRefundPage() {
   return (

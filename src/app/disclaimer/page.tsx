@@ -1,13 +1,14 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import LegalPage from "@/components/ui/LegalPage";
 import Placeholder from "@/components/ui/Placeholder";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Disclaimer",
   description:
-    "Important product information disclaimer for KadhaPlus herbal wellness.",
-};
+    "Important product information disclaimer for KadhaPlus Instant Herbal Kadha, a herbal wellness product.",
+  path: "/disclaimer",
+});
 
 export default function DisclaimerPage() {
   return (

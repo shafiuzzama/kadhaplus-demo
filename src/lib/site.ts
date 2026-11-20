@@ -7,8 +7,8 @@ export const site = {
     "Bringing the wisdom of traditional Indian kadha into a simple, convenient and modern wellness experience.",
   philosophy: "Traditional Wisdom. Modern Convenience.",
   slogan: "Dadi Maa Ka Nuskha, Ab Ek Naye Andaaz Mein!",
-  positioning: "Cough • Cold • Fever • Throat • Nasal Comfort",
-  seasonal: "Seasonal & Sinus Wellness",
+  positioning: "Throat • Respiratory • Cough & Cold • Immunity",
+  seasonal: "Seasonal Wellness",
   url: "https://kadhaplus.com",
   product: {
     name: "KadhaPlus Instant Herbal Kadha",

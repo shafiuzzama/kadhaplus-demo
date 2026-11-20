@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { ArrowRight, Leaf, Heart, Sprout, Clock3 } from "lucide-react";
 import PageHeader from "@/components/ui/PageHeader";
@@ -8,11 +8,12 @@ import { SachetArt, SachetStanding } from "@/components/product/ProductVisuals";
 import { site } from "@/lib/site";
 import { whyTrust } from "@/lib/content";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "About Us",
   description:
-    "From generations of wisdom to everyday convenience — the story and philosophy behind KadhaPlus herbal wellness.",
-};
+    "From generations of wisdom to everyday convenience — the story and philosophy behind KadhaPlus Instant Herbal Kadha.",
+  path: "/about",
+});
 
 const values = [
   { icon: Sprout, title: "Tradition", desc: "We honour the familiar comfort of home-brewed kadha." },

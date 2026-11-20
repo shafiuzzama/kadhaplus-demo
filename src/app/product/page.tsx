@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -18,13 +17,27 @@ import ProductGallery, {
   type GalleryImage,
 } from "@/components/product/ProductGallery";
 import BuyBox, { type BuyVariant } from "@/components/store/BuyBox";
+import JsonLd from "@/components/seo/JsonLd";
 import { VARIANTS } from "@/lib/catalog";
+import {
+  pageMetadata,
+  productSchema,
+  breadcrumbSchema,
+  faqSchema,
+} from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "KadhaPlus Instant Herbal Kadha",
+export const metadata = pageMetadata({
+  title: "Instant Herbal Kadha — Single Sachet ₹20 & 5-Pack ₹100",
   description:
-    "KadhaPlus Instant Herbal Kadha — a traditional blend of 17 powerful herbs in a convenient sachet. Buy a single 4 g sachet (₹20) or the 5-sachet combo pack (₹100).",
-};
+    "Buy KadhaPlus Instant Herbal Kadha online — 17 traditional herbs in a convenient sachet. Single 4 g sachet at ₹20 or the 5-sachet combo pack (20 g) at ₹100. 100% herbal, no added preservatives.",
+  path: "/product",
+  image: {
+    url: "/images/kadhaplus/pack-box-open.webp",
+    width: 1536,
+    height: 1024,
+    alt: "KadhaPlus Instant Herbal Kadha — open 5-sachet combo box",
+  },
+});
 
 /* The four supplied final-packaging photographs, in gallery order. */
 const GALLERY: GalleryImage[] = [
@@ -105,6 +118,17 @@ export default function ProductPage() {
 
   return (
     <>
+      <JsonLd
+        data={[
+          productSchema(),
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Our Product", path: "/product" },
+          ]),
+          faqSchema(FAQS),
+        ]}
+      />
+
       {/* ============================ HERO: gallery + buy ===================== */}
       <section className="bg-cream-50 pb-16 pt-7 sm:pb-24 lg:pt-11">
         <div className="container-px">

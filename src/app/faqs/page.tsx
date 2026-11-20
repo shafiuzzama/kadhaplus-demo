@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import PageHeader from "@/components/ui/PageHeader";
@@ -6,11 +6,12 @@ import Reveal from "@/components/ui/Reveal";
 import Accordion from "@/components/ui/Accordion";
 import { faqs } from "@/lib/content";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "FAQs",
   description:
-    "Frequently asked questions about KadhaPlus — what it is, what's in the box, pricing, preparation, ingredients and safety.",
-};
+    "Frequently asked questions about KadhaPlus Instant Herbal Kadha — what it is, what's in the box, pricing, preparation, the 17 herbs and safety.",
+  path: "/faqs",
+});
 
 export default function FaqsPage() {
   return (

@@ -23,6 +23,15 @@ import BuyBox, { type BuyVariant } from "@/components/store/BuyBox";
 import { Sprig } from "@/components/product/PackArt";
 import KadhaHeroBanner from "@/components/KadhaHeroBanner";
 import BrandExperience from "@/components/BrandExperience";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "KadhaPlus — Instant Herbal Kadha | 17-Herb Kadha Sachets",
+  description:
+    "KadhaPlus Instant Herbal Kadha — a traditional blend of 17 herbs in convenient single-serve sachets. Try a 4 g sachet at ₹20 or the 5-sachet combo pack at ₹100.",
+  path: "/",
+  absoluteTitle: true,
+});
 
 /* ── Final product packaging (user-supplied) ───────────────────────────── */
 const IMG = "/images/kadhaplus";
@@ -65,6 +74,12 @@ export default function HomePage() {
 
   return (
     <>
+      {/* SEO: single descriptive H1 for the image-led hero (visually hidden). */}
+      <h1 className="sr-only">
+        KadhaPlus Instant Herbal Kadha — a traditional blend of 17 herbs in
+        convenient single-serve sachets
+      </h1>
+
       {/* ═══════════ HERO ═══════════ */}
       <KadhaHeroBanner />
 
